@@ -15,16 +15,14 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid #3f3d39;
+  border: 1px solid var(--window-border);
   border-radius: 12px;
   background: var(--app-bg);
   color: var(--fg);
   font: 13px/1.4 var(--app-sans);
   overflow: hidden;
   container-type: inline-size;
-  box-shadow:
-    0 36px 80px -36px rgb(28 27 26 / 0.55),
-    0 2px 8px rgb(28 27 26 / 0.1);
+  box-shadow: var(--window-shadow);
 }
 
 .env-bar {
@@ -63,7 +61,7 @@ button {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #4a4843;
+  background: var(--lights);
 }
 
 .name {
@@ -138,7 +136,7 @@ button {
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #f4b3a8;
+  color: var(--error-soft);
   font-size: 12px;
   white-space: nowrap;
 }

@@ -10,6 +10,9 @@
       content="opsbuf is a native workbench for the systems behind your code: logs, Kubernetes, Redis, scripts, databases and HTTP. Every environment is one keystroke away, and every definition is a plain file in git."
     />
     <meta name="theme-color" content="#f5f3ee" />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem('opsbuf.theme') === 'dark' ? 'dark' : 'light';
+    </script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

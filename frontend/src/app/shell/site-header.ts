@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Session } from '../core/session';
+import { Theme } from '../core/theme';
 import { Icon } from '../ui/icon';
 import { Logo } from '../ui/logo';
 
@@ -24,6 +25,15 @@ import { Logo } from '../ui/logo';
           <a routerLink="/" fragment="pricing" (click)="closeMenu()">Pricing</a>
           <a routerLink="/" fragment="faq" (click)="closeMenu()">FAQ</a>
           <span class="actions">
+            <button
+              class="theme"
+              type="button"
+              [attr.aria-label]="theme.name() === 'light' ? 'Switch to the dark theme' : 'Switch to the light theme'"
+              [title]="theme.name() === 'light' ? 'Dark theme' : 'Light theme'"
+              (click)="theme.toggle()"
+            >
+              <opsbuf-icon [name]="theme.name() === 'light' ? 'moon' : 'sun'" [size]="17" />
+            </button>
             @if (session.isSignedIn()) {
               <a class="button small ghost" routerLink="/account" (click)="closeMenu()">
                 <opsbuf-icon name="lock" [size]="15" /> Licenses
@@ -101,6 +111,25 @@ import { Logo } from '../ui/logo';
       align-items: center;
     }
 
+    .theme {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--fg-muted);
+      cursor: pointer;
+    }
+
+    .theme:hover {
+      border-color: var(--border);
+      background: var(--hover);
+      color: var(--fg);
+    }
+
     .menu {
       display: none;
       margin-left: auto;
@@ -144,6 +173,7 @@ import { Logo } from '../ui/logo';
 })
 export class SiteHeader {
   protected readonly session = inject(Session);
+  protected readonly theme = inject(Theme);
   private readonly router = inject(Router);
   protected readonly isScrolled = signal(false);
   protected readonly isMenuOpen = signal(false);
