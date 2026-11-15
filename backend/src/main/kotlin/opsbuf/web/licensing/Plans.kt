@@ -33,7 +33,7 @@ object Plans {
             maxSeats = 1,
             devicesPerSeat = 2,
             features = listOf(
-                "All modules: Data, Logs, Redis, HTTP, Kubernetes, Scripts, Prompts, Access, Builds",
+                "All modules: Logs, Scripts, Kubernetes, Redis, Data, HTTP, Git, Prompts, Access, Builds",
                 "The opsbuf CLI and the Chrome capture plugin",
                 "2 activated machines",
                 "Every update while the license runs",

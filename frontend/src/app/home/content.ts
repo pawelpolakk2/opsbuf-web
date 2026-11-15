@@ -8,7 +8,17 @@ export interface ModuleCard {
   color: string;
   files: string[];
   summary: string;
+}
+
+export interface Spotlight extends ModuleCard {
   points: string[];
+  sample: CodeSample;
+}
+
+export interface Principle {
+  icon: IconName;
+  title: string;
+  text: string;
 }
 
 export interface CodeSample {
@@ -36,25 +46,25 @@ export interface Question {
   answer: string;
 }
 
-export const MODULES: ModuleCard[] = [
+export const PRINCIPLES: Principle[] = [
   {
-    id: 'project',
-    name: 'Project',
-    icon: 'folder',
-    color: 'var(--module-project)',
-    files: ['environments.yaml', 'project.json', '*.md'],
-    summary: 'The folder itself. Its tree shows every file, and every setting lives in git.',
-    points: ['Environments with label, color and read-only flag', 'Notes next to the definitions', 'Shortcuts and npm packages in project.json'],
+    icon: 'file',
+    title: 'Plain files in git',
+    text: 'Sources, searches and scripts are small YAML files next to your code. The team gets them with a pull.',
   },
   {
-    id: 'data',
-    name: 'Data',
-    icon: 'database',
-    color: 'var(--module-data)',
-    files: ['*.source.yaml', '*.sql', '*.lookup.yaml', '*.csv'],
-    summary: 'Postgres, OpenSearch and CloudWatch sources with a connection per environment.',
-    points: ['SQL files you review like code', 'Edit cells, preview the change set, then apply', 'Lookups turn ids into names everywhere'],
+    icon: 'columns',
+    title: 'One switch for every environment',
+    text: 'Press ⌘1 to ⌘9 and every module follows: logs, clusters, keys and scripts move to DEV, TEST or PROD.',
   },
+  {
+    icon: 'shield',
+    title: 'Safe with production',
+    text: 'Read-only environments, a confirmation before writes and an audit of every action.',
+  },
+];
+
+export const SPOTLIGHTS: Spotlight[] = [
   {
     id: 'logs',
     name: 'Logs',
@@ -62,25 +72,52 @@ export const MODULES: ModuleCard[] = [
     color: 'var(--module-logs)',
     files: ['*.logs.yaml', 'logs/parsers.yaml'],
     summary: 'Live tail and search over CloudWatch and OpenSearch, one file per service.',
-    points: ['Parsers turn lines into fields', 'Saved searches and labels', 'Query logs with SQL, like a table'],
+    points: [
+      'Parsers turn lines into fields you can filter',
+      'Lookups show a tenant name where the log has an id',
+      'Saved views, and every log is also a table in SQL',
+    ],
+    sample: {
+      file: 'logs/checkout-api.logs.yaml',
+      language: 'yaml',
+      code: `kind: logs
+name: checkout_api
+source: cloudwatch
+group: /aws/lambda/checkout-api
+parser: checkout-api          # logs/parsers.yaml
+views:
+  errors: level = 'ERROR'
+  slow: duration_ms > 2000
+sql_table: logs.checkout_api  # also a table in SQL`,
+    },
   },
   {
-    id: 'redis',
-    name: 'Redis',
-    icon: 'redis',
-    color: 'var(--module-redis)',
-    files: ['*.keys.yaml', '*.redis'],
-    summary: 'A keys view that reads key names like fields. Safe by design.',
-    points: ['Snapshot, sort and filter keys by their parts', 'Never sends KEYS, FLUSHALL or CONFIG', 'Every command lands in an audit log'],
-  },
-  {
-    id: 'http',
-    name: 'HTTP',
-    icon: 'globe',
-    color: 'var(--module-http)',
-    files: ['*.http', '*.capture.yaml', '*.ts'],
-    summary: 'Requests with TypeScript functions and the variables of the active environment.',
-    points: ['Monaco editor with completion inside {{ }}', 'Capture endpoints from Chrome', 'Reuse logged-in sessions from the Keychain'],
+    id: 'scripts',
+    name: 'Scripts',
+    icon: 'script',
+    color: 'var(--module-scripts)',
+    files: ['*.script.yaml', 'runs/<name>/*.json'],
+    summary: 'A form over a TypeScript file. Run it, watch the progress, read a real report.',
+    points: [
+      'params become fields, presets fill them',
+      'Metrics, checks, tables and 9 chart types',
+      'Every run is kept as plain JSON next to the script',
+    ],
+    sample: {
+      file: 'scripts/refund-estimate.script.yaml',
+      language: 'yaml',
+      code: `kind: script
+title: Refund estimate
+run: refund-estimate.ts
+uses: [orders_db]          # the sources it may query
+params:
+  since:
+    type: time
+    default: now-7d
+  tenants:
+    type: lookup           # shows names, the script gets ids
+    lookup: tenant`,
+    },
   },
   {
     id: 'k8s',
@@ -89,16 +126,83 @@ export const MODULES: ModuleCard[] = [
     color: 'var(--module-k8s)',
     files: ['*.cluster.yaml'],
     summary: 'A cluster per environment through kubectl and your kube contexts.',
-    points: ['Resource lists with a : command bar', 'Pod metrics at a glance', 'Terminals right inside the workbench'],
+    points: [
+      'Resource lists with a : command bar and single-key actions',
+      'Pod logs with the parsers of the Logs module',
+      'Port-forwards and saved views, named in the file',
+    ],
+    sample: {
+      file: 'k8s/acme.cluster.yaml',
+      language: 'yaml',
+      code: `kind: cluster
+name: acme
+environments:
+  dev:
+    context: docker-desktop
+  prod:
+    context: eks-acme-prod
+    read_only: true          # no shell, restart, scale or delete
+views:
+  failing: pods status in (Error, CrashLoopBackOff, Pending)
+port_forwards:
+  billing-api: svc/billing-api 18080:80`,
+    },
   },
   {
-    id: 'scripts',
-    name: 'Scripts',
-    icon: 'script',
-    color: 'var(--module-scripts)',
-    files: ['*.script.yaml'],
-    summary: 'A form over a TypeScript file. Params, presets, progress and a real report.',
-    points: ['sql(), lookup() and env built in', 'Metrics, checks, tables and 9 chart types', 'Every run is kept as plain JSON'],
+    id: 'redis',
+    name: 'Redis',
+    icon: 'redis',
+    color: 'var(--module-redis)',
+    files: ['*.keys.yaml', '*.redis'],
+    summary: 'A keys view that reads key names like fields. Safe by design.',
+    points: [
+      'Search, sort and filter keys by the parts of their name',
+      'Never sends KEYS, FLUSHALL or CONFIG',
+      'Every command lands in an audit log',
+    ],
+    sample: {
+      file: 'redis/shop-cache.keys.yaml',
+      language: 'yaml',
+      code: `kind: keys
+name: shop_cache
+source: redis_main
+patterns:
+  cart:*:
+    key: cart:{tenant_id}:{cart_id}
+    columns: [key, tenant_id, cart_id, items, status, ttl]
+  session:*:
+    key: session:{session_id}
+    decode: gzip+json
+views:
+  no-ttl: ttl = none`,
+    },
+  },
+];
+
+export const MODULES: ModuleCard[] = [
+  {
+    id: 'data',
+    name: 'Data',
+    icon: 'database',
+    color: 'var(--module-data)',
+    files: ['*.source.yaml', '*.sql', '*.lookup.yaml'],
+    summary: 'Postgres, OpenSearch and CloudWatch sources with a connection per environment.',
+  },
+  {
+    id: 'http',
+    name: 'HTTP',
+    icon: 'globe',
+    color: 'var(--module-http)',
+    files: ['*.http', '*.capture.yaml'],
+    summary: 'Requests with TypeScript functions, environment variables and endpoints captured from Chrome.',
+  },
+  {
+    id: 'git',
+    name: 'Git',
+    icon: 'branch',
+    color: 'var(--module-git)',
+    files: ['inside a repository'],
+    summary: 'Changes, diffs, the commit box, branches and history, without leaving the workbench.',
   },
   {
     id: 'prompts',
@@ -106,8 +210,7 @@ export const MODULES: ModuleCard[] = [
     icon: 'claude',
     color: 'var(--module-prompts)',
     files: ['*.prompt.md'],
-    summary: 'Tasks for Claude written as specs, reviewed like code, kept next to it.',
-    points: ['Plain Markdown in git', 'Goal, context and checks in one file', 'The view shows everything the file says'],
+    summary: 'Tasks for Claude written as specs, reviewed like code and kept next to it.',
   },
   {
     id: 'access',
@@ -116,7 +219,6 @@ export const MODULES: ModuleCard[] = [
     color: 'var(--module-access)',
     files: ['*.proxy.yaml'],
     summary: 'A local gate to services behind Teleport. Rules decide which requests pass.',
-    points: ['Encrypted vault, unlocked for a while', 'Sessions and audit in the view', 'Credentials never touch the file'],
   },
   {
     id: 'builds',
@@ -125,7 +227,6 @@ export const MODULES: ModuleCard[] = [
     color: 'var(--module-builds)',
     files: ['*.watch.yaml'],
     summary: 'Follow a push on GitHub from the build to every environment.',
-    points: ['Pull requests waiting for you', 'Failures before your teammates ask', 'Token from the Keychain, never from the file'],
   },
 ];
 
@@ -179,53 +280,6 @@ environments:
     color: '#ef7b6b'
     read_only: true
     confirm_writes: true`,
-    },
-  },
-  {
-    eyebrow: 'Requests',
-    title: 'HTTP with real code inside',
-    text: 'Write requests next to small TypeScript functions. Variables come from the active environment, tokens from your Keychain, and the opsbuf plugin turns calls you click through in Chrome into endpoints.',
-    points: ['Imports from lib/*.ts and npm packages', 'Completion and hover in Monaco', 'Run from the app or with opsbuf http send'],
-    sample: {
-      file: 'http/billing.http',
-      language: 'http',
-      code: `import { acquireToken } from './lib/auth';
-
-### Refunds of one tenant
-GET {{BASE_URL}}/v1/tenants/{{tenantId}}/refunds?since={{daysAgo(7)}}
-Authorization: Bearer {{acquireToken()}}
-
-### Retry a failed payment
-# @session admin-console
-POST {{BASE_URL}}/v1/payments/{{paymentId}}/retry
-Content-Type: application/json
-
-{ "reason": "{{uuid()}}" }`,
-    },
-  },
-  {
-    eyebrow: 'Scripts',
-    title: 'Scripts that report, not just print',
-    text: 'Turn the calculation you repeat every week into a form. Run it, watch the progress, read a report with metrics, checks and charts, and keep every run next to the script.',
-    points: ['params become fields, presets fill them', 'sql() on the sources the script uses', 'opsbuf script run does the same in a terminal'],
-    sample: {
-      file: 'scripts/refund-estimate.script.yaml',
-      language: 'yaml',
-      code: `kind: script
-title: Refund estimate
-run: refund-estimate.ts
-uses: [orders_db]          # the sources it may query
-params:
-  since:
-    type: time
-    default: now-7d
-  tenants:
-    type: lookup
-    lookup: tenant         # shows names, the script gets ids
-    multiple: true
-presets:
-  last-month:
-    since: now-30d`,
     },
   },
   {

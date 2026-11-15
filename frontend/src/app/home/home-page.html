@@ -2,58 +2,97 @@
   <div class="glow"></div>
   <div class="grid-lines"></div>
   <div class="page hero-content">
-    <a class="announce" routerLink="/" fragment="workflow">
-      <span class="chip new">New</span> opsbuf 1.9 · Scripts with reports, Redis keys view, Chrome capture
+    <a class="announce" routerLink="/" fragment="features">
+      <span class="chip new">2.0</span> PTX is now opsbuf
       <opsbuf-icon name="chevronRight" [size]="14" />
     </a>
     <h1>
-      Every system you touch.<br />
-      <span class="gradient-text">One workbench, in git.</span>
+      From first error to fix,<br />
+      <span class="accent-text">in one window.</span>
     </h1>
     <p class="lead">
-      opsbuf is a native developer workbench. Databases, logs, Redis, HTTP, Kubernetes and scripts for
-      every environment, defined as plain files next to your code.
+      opsbuf is a native workbench for the systems behind your code. Logs, Kubernetes, Redis and scripts sit next to
+      your databases and HTTP requests, and every definition is a plain file in git.
     </p>
     <div class="cta">
       <a class="button primary" routerLink="/" fragment="pricing">
-        Get a license <opsbuf-icon name="chevronRight" [size]="16" />
+        Get opsbuf <opsbuf-icon name="chevronRight" [size]="16" />
       </a>
-      <a class="button" routerLink="/" fragment="modules">See all modules</a>
+      <a class="button" routerLink="/" fragment="features">See what it does</a>
     </div>
-    <div class="facts">
-      <span><strong>10</strong> modules</span>
-      <span><strong>1</strong> folder of YAML in git</span>
-      <span><strong>⌘1–9</strong> environments</span>
-      <span><strong>0</strong> secrets in files</span>
-    </div>
-    <opsbuf-workbench-preview class="preview" />
-    <p class="hint">Try it: switch the environment or click the module icons on the left.</p>
+    <p class="facts">
+      <span>macOS on Apple Silicon</span>
+      <span>Rust core</span>
+      <span>No cloud account</span>
+    </p>
+    <opsbuf-showcase class="showcase" id="tour" />
+    <p class="hint">One incident, four tools. Click a step or an environment to explore.</p>
   </div>
 </section>
 
-<section class="section" id="modules">
+<section class="principles">
+  <div class="page principle-grid">
+    @for (principle of principles; track principle.title) {
+      <article opsbufReveal>
+        <opsbuf-icon [name]="principle.icon" [size]="20" />
+        <h3>{{ principle.title }}</h3>
+        <p>{{ principle.text }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="page">
+    <div opsbufReveal>
+      <span class="eyebrow">The four you open first</span>
+      <h2 class="section-title">Built for the day production breaks</h2>
+      <p class="section-lead">
+        Each tool is one file in your repo. Open it and the view is ready, on the environment you picked.
+      </p>
+    </div>
+    <div class="spotlights">
+      @for (spotlight of spotlights; track spotlight.id) {
+        <article class="spotlight card" opsbufReveal [style.--module]="spotlight.color">
+          <div class="spotlight-text">
+            <div class="module-head">
+              <span class="module-icon"><opsbuf-icon [name]="spotlight.icon" [size]="20" /></span>
+              <h3>{{ spotlight.name }}</h3>
+            </div>
+            <p>{{ spotlight.summary }}</p>
+            <ul>
+              @for (point of spotlight.points; track point) {
+                <li><opsbuf-icon name="check" [size]="14" [strokeWidth]="2.2" />{{ point }}</li>
+              }
+            </ul>
+          </div>
+          <div class="spotlight-file">
+            <div class="code-head"><opsbuf-icon name="file" [size]="14" />{{ spotlight.sample.file }}</div>
+            <pre class="code" [innerHTML]="spotlight.html"></pre>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section tight" id="modules">
   <div class="page">
     <div opsbufReveal>
       <span class="eyebrow">Modules</span>
-      <h2 class="section-title">Ten tools you used to keep in ten windows</h2>
+      <h2 class="section-title">Six more, in the same window</h2>
       <p class="section-lead">
-        Each file kind opens in its module. The rail shows a module as soon as the project has a
-        file for it.
+        They sit next to the project tree. The rail shows a module as soon as the project has a file for it.
       </p>
     </div>
     <div class="modules">
       @for (module of modules; track module.id) {
         <article class="module card" opsbufReveal [style.--module]="module.color">
           <div class="module-head">
-            <span class="module-icon"><opsbuf-icon [name]="module.icon" [size]="20" /></span>
+            <span class="module-icon"><opsbuf-icon [name]="module.icon" [size]="18" /></span>
             <h3>{{ module.name }}</h3>
           </div>
           <p>{{ module.summary }}</p>
-          <ul>
-            @for (point of module.points; track point) {
-              <li><opsbuf-icon name="check" [size]="14" [strokeWidth]="2.2" />{{ point }}</li>
-            }
-          </ul>
           <div class="files">
             @for (file of module.files; track file) {
               <code>{{ file }}</code>
@@ -71,8 +110,8 @@
       <span class="eyebrow">Workflow</span>
       <h2 class="section-title">Tooling you can review in a pull request</h2>
       <p class="section-lead">
-        Your queries, requests and scripts stop living in personal tools. They live in the repo,
-        and the whole team gets them with a pull.
+        Your searches, requests and scripts stop living in personal tools. They live in the repo, and the whole team
+        gets them with a pull.
       </p>
     </div>
     @for (step of workflow; track step.title; let odd = $odd) {
@@ -89,11 +128,7 @@
         </div>
         <div class="step-code card" [class.terminal]="isTerminal(step)">
           <div class="code-head">
-            @if (isTerminal(step)) {
-              <opsbuf-icon name="terminal" [size]="14" />
-            } @else {
-              <opsbuf-icon name="file" [size]="14" />
-            }
+            <opsbuf-icon [name]="isTerminal(step) ? 'terminal' : 'file'" [size]="14" />
             {{ step.sample.file }}
           </div>
           <pre class="code" [innerHTML]="step.html"></pre>
@@ -128,8 +163,8 @@
       <span class="eyebrow">Security</span>
       <h2 class="section-title">Safe with production, by default</h2>
       <p class="section-lead">
-        opsbuf touches the systems that matter. It keeps secrets out of files, keeps production
-        read-only and writes down what it did.
+        opsbuf touches the systems that matter. It keeps secrets out of files, keeps production read-only and writes
+        down what it did.
       </p>
     </div>
     <div class="security">
@@ -166,10 +201,11 @@
 <section class="final">
   <div class="page">
     <div class="final-card" opsbufReveal>
+      <opsbuf-logo [size]="52" />
       <h2>Open your first project in a minute</h2>
       <p>Point opsbuf at a folder. It offers a project.json and finds every file by its suffix.</p>
       <div class="cta">
-        <a class="button primary" routerLink="/" fragment="pricing">Buy opsbuf</a>
+        <a class="button primary" routerLink="/" fragment="pricing">Get opsbuf</a>
         <a class="button" routerLink="/login">Sign in to your licenses</a>
       </div>
     </div>
