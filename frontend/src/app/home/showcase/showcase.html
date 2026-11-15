@@ -1,0 +1,129 @@
+<div class="window" [style.--env]="environment().color" [style.--module]="activeModule().color">
+  <div class="env-bar"></div>
+  <header class="titlebar">
+    <div class="brand">
+      <span class="lights"><i></i><i></i><i></i></span>
+      <opsbuf-logo [size]="22" />
+      <span class="name">opsbuf</span>
+      <span class="slash">/</span>
+      <span class="project">payments-incident <opsbuf-icon name="chevronDown" [size]="12" [strokeWidth]="2" /></span>
+    </div>
+    <div class="env-switch" role="group" aria-label="Environment">
+      @for (env of environments; track env.key) {
+        <button
+          type="button"
+          [class.active]="env.key === environment().key"
+          [style.--env-color]="env.color"
+          [attr.aria-pressed]="env.key === environment().key"
+          (click)="selectEnvironment(env.key)"
+        >
+          <i></i>{{ env.label }}
+        </button>
+      }
+    </div>
+    <div class="actions">
+      @if (environment().key === 'prod') {
+        <span class="read-only"><opsbuf-icon name="lock" [size]="13" /> read-only</span>
+      }
+      <span class="ide-button"><opsbuf-icon name="play" [size]="11" /> {{ scene().action }}</span>
+    </div>
+  </header>
+  <div class="body">
+    <nav class="rail" aria-label="Modules">
+      @for (module of railModules; track module.id) {
+        <button
+          type="button"
+          [class.active]="module.id === scene().moduleId"
+          [class.idle]="!hasScene(module.id)"
+          [style.--color]="module.color"
+          [attr.aria-label]="module.name"
+          [title]="module.name"
+          (click)="selectModule(module.id)"
+        >
+          <opsbuf-icon [name]="module.icon" [size]="18" />
+        </button>
+      }
+      <span class="divider"></span>
+      <span class="add"><opsbuf-icon name="plus" [size]="16" [strokeWidth]="2" /></span>
+      <span class="spacer"></span>
+      <span class="tool"><opsbuf-icon name="terminal" [size]="17" /></span>
+      <span class="tool"><opsbuf-icon name="settings" [size]="17" /></span>
+    </nav>
+    <aside class="side">
+      <div class="side-title">{{ activeModule().name }}</div>
+      <div class="tree-row folder">
+        <opsbuf-icon name="chevronDown" [size]="12" [strokeWidth]="2" />
+        <opsbuf-icon name="folder" [size]="14" />
+        {{ scene().folder }}
+      </div>
+      <div class="tree-row file active"><opsbuf-icon name="file" [size]="14" />{{ scene().file }}</div>
+      @for (file of scene().otherFiles; track file) {
+        <div class="tree-row file"><opsbuf-icon name="file" [size]="14" />{{ file }}</div>
+      }
+    </aside>
+    <section class="main">
+      <div class="tabs">
+        @for (tab of scenes; track tab.id; let index = $index) {
+          <button
+            type="button"
+            [class.active]="tab.id === scene().id"
+            [style.--color]="requireModule(tab.moduleId).color"
+            (click)="selectScene(index)"
+          >
+            <opsbuf-icon [name]="requireModule(tab.moduleId).icon" [size]="13" />
+            <span>{{ tab.file }}</span>
+          </button>
+        }
+        <span class="modes">
+          @for (mode of scene().modes; track mode) {
+            <span [class.active]="mode === scene().activeMode">{{ mode }}</span>
+          }
+        </span>
+      </div>
+      <div class="view">
+        @switch (scene().id) {
+          @case ('logs') {
+            <opsbuf-logs-scene />
+          }
+          @case ('k8s') {
+            <opsbuf-cluster-scene />
+          }
+          @case ('redis') {
+            <opsbuf-keys-scene />
+          }
+          @case ('scripts') {
+            <opsbuf-script-scene [environmentKey]="environment().key" />
+          }
+        }
+      </div>
+    </section>
+  </div>
+  <footer class="status">
+    <span class="env"><i></i>{{ environment().label }}</span>
+    <span class="branch">⎇ incident/checkout-timeouts ↑2</span>
+    <span class="wide">40 files · 10 modules</span>
+    <span class="wide path">{{ scene().folder }}/{{ scene().file }} · kind {{ scene().kind }}</span>
+    <span class="valid">✓ valid</span>
+    <span class="cli">$ cli</span>
+  </footer>
+</div>
+<div class="chapters" role="tablist" aria-label="The tour: one incident in four tools">
+  @for (chapter of scenes; track chapter.id; let index = $index) {
+    <button
+      type="button"
+      role="tab"
+      [class.active]="chapter.id === scene().id"
+      [attr.aria-selected]="chapter.id === scene().id"
+      [style.--color]="requireModule(chapter.moduleId).color"
+      (click)="selectScene(index)"
+    >
+      <span class="progress"><i (animationend)="showNextScene()"></i></span>
+      <span class="step">{{ chapter.step }}</span>
+      <span class="module">
+        <opsbuf-icon [name]="requireModule(chapter.moduleId).icon" [size]="15" />
+        {{ requireModule(chapter.moduleId).name }}
+      </span>
+      <span class="caption">{{ chapter.caption }}</span>
+    </button>
+  }
+</div>

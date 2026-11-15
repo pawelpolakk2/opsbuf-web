@@ -1,0 +1,161 @@
+// What the four scenes share with the app: the saved views, the search bar, the quiet IDE button and the typing.
+:host {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.mono {
+  font-family: var(--app-mono);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.views {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.view-chip {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.view-chip.active {
+  border-color: var(--accent);
+  background: var(--tint-logs);
+}
+
+.tool-button {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--fg-dim);
+  overflow: hidden;
+}
+
+.typed {
+  display: inline-block;
+  width: calc(var(--chars) * 1ch);
+  overflow: hidden;
+  color: var(--fg);
+  font-family: var(--app-mono);
+  font-size: 12px;
+  white-space: nowrap;
+  animation: type calc(var(--chars) * 60ms) steps(var(--chars)) var(--type-at, 0.5s) both;
+}
+
+.caret {
+  width: 1.5px;
+  height: 14px;
+  margin-left: -6px;
+  background: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+
+.hint {
+  color: var(--fg-dim);
+  font-size: 11.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes grow-up {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes grow-right {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+}

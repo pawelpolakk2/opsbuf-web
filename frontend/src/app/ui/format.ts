@@ -13,3 +13,9 @@ export function formatDate(epochMillis: number): string {
     new Date(epochMillis),
   );
 }
+
+export function formatAmount(value: number, decimals: number, separator: string): string {
+  const [whole, fraction] = value.toFixed(decimals).split('.');
+  const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+  return fraction ? `${grouped}.${fraction}` : grouped;
+}

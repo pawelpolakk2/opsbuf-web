@@ -1,0 +1,258 @@
+@use 'scene';
+
+.ranges {
+  flex: none;
+  display: flex;
+  gap: 2px;
+  color: var(--fg-muted);
+}
+
+.ranges span {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 6px;
+}
+
+.ranges .active {
+  background: var(--pressed);
+  color: var(--fg);
+}
+
+.update {
+  animation: press 0.5s ease 1.5s both;
+}
+
+.live {
+  color: var(--fg);
+}
+
+.live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 0 rgba(127, 212, 163, 0.5);
+  animation: pulse 1.6s ease infinite;
+}
+
+.histogram {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.total {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.period {
+  font-size: 11px;
+  color: var(--fg-dim);
+}
+
+.bars {
+  height: 56px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.bar {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 2px 2px 0 0;
+  background: #45433f;
+  overflow: hidden;
+  transform-origin: bottom;
+  animation: grow-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) calc(1.5s + var(--i) * 22ms) both;
+}
+
+.bar i {
+  display: block;
+  background: var(--error);
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  color: var(--fg-dim);
+  font-size: 10.5px;
+}
+
+.table {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 24px 108px 62px 138px 100px minmax(0, 1fr) 104px;
+  align-items: center;
+  min-height: 27px;
+  border-bottom: 1px solid var(--border-soft);
+  white-space: nowrap;
+  animation: rise 0.4s ease calc(2.3s + var(--i) * 90ms) both;
+}
+
+.row > span {
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row.head {
+  min-height: 28px;
+  background: var(--panel);
+  border-bottom-color: var(--border);
+  color: var(--fg-muted);
+  font-weight: 600;
+  animation: none;
+}
+
+.row.expanded {
+  background: #24231f;
+  border-bottom-color: transparent;
+}
+
+.toggle {
+  padding: 0 0 0 8px !important;
+  color: var(--fg-dim);
+  font-size: 10px;
+}
+
+.level {
+  color: var(--error);
+  font-weight: 600;
+}
+
+.container {
+  color: var(--code-identifier);
+}
+
+.duration {
+  text-align: right;
+}
+
+.swapped {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 4px 0 3px;
+  border-radius: 3px;
+  background: var(--tint-http);
+  color: var(--module-http);
+  font-weight: 400;
+}
+
+.fields {
+  margin: 0 10px 8px 30px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--rail);
+  overflow: hidden;
+  animation: rise 0.45s ease 3.3s both;
+}
+
+.fields div {
+  display: flex;
+  gap: 12px;
+  padding: 3px 10px;
+  border-bottom: 1px solid var(--app-bg);
+  line-height: 18px;
+}
+
+.fields div > span:first-child {
+  width: 130px;
+  flex: none;
+  color: var(--fg-dim);
+}
+
+.lookup {
+  color: var(--module-http);
+  font-weight: 400;
+  animation: flash 1.2s ease 4.2s both;
+}
+
+.trace {
+  min-width: 0;
+}
+
+.trace span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trace .frame {
+  padding-left: 4ch;
+  color: var(--fg-muted);
+}
+
+@keyframes press {
+  40% {
+    background: var(--pressed);
+    color: var(--fg);
+    border-color: var(--accent);
+  }
+}
+
+@keyframes flash {
+  0%,
+  60% {
+    background: rgba(195, 166, 240, 0.28);
+    box-shadow: 0 0 0 3px rgba(195, 166, 240, 0.28);
+  }
+}
+
+@container (max-width: 760px) {
+  .row {
+    grid-template-columns: 24px 108px 62px 138px minmax(0, 1fr);
+  }
+
+  .extra,
+  .duration,
+  .ranges {
+    display: none;
+  }
+}
+
+@container (max-width: 520px) {
+  .row {
+    grid-template-columns: 20px 112px 56px minmax(0, 1fr);
+  }
+
+  .tenant,
+  .update {
+    display: none;
+  }
+
+  .fields {
+    margin-left: 10px;
+  }
+
+  .fields div > span:first-child {
+    width: 112px;
+  }
+
+  .row > span {
+    padding: 0 8px;
+  }
+}
