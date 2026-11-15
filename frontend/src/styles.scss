@@ -16,7 +16,6 @@
   --accent: #8c90f8;
   --accent-strong: #b9bbff;
   --accent-fill: #5c60d6;
-  --accent-fill-hover: #6266dc;
   --accent-rgb: 103 107 224;
   --on-accent: #ffffff;
   --link: #a5a8fb;
@@ -150,10 +149,6 @@ kbd {
   font-size: 18px;
 }
 
-.accent-text {
-  color: var(--accent);
-}
-
 .button {
   display: inline-flex;
   align-items: center;
@@ -191,16 +186,15 @@ kbd {
 }
 
 .button.primary {
-  background: var(--accent-fill);
-  border-color: var(--accent-fill);
-  color: var(--on-accent);
-  box-shadow: 0 8px 28px -10px rgb(var(--accent-rgb) / 0.7);
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
 }
 
 .button.primary:hover {
-  background: var(--accent-fill-hover);
-  border-color: var(--accent-fill-hover);
-  color: var(--on-accent);
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--bg);
 }
 
 .button.ghost {

@@ -1,32 +1,34 @@
 <section class="hero">
-  <div class="glow"></div>
-  <div class="grid-lines"></div>
-  <div class="page hero-content">
-    <a class="announce" routerLink="/" fragment="features">
-      <span class="chip new">2.0</span> PTX is now opsbuf
-      <opsbuf-icon name="chevronRight" [size]="14" />
-    </a>
-    <h1>
-      From first error to fix,<br />
-      <span class="accent-text">in one window.</span>
-    </h1>
-    <p class="lead">
-      opsbuf is a native workbench for the systems behind your code. Logs, Kubernetes, Redis and scripts sit next to
-      your databases and HTTP requests, and every definition is a plain file in git.
-    </p>
-    <div class="cta">
-      <a class="button primary" routerLink="/" fragment="pricing">
-        Get opsbuf <opsbuf-icon name="chevronRight" [size]="16" />
-      </a>
-      <a class="button" routerLink="/" fragment="features">See what it does</a>
+  <div class="page">
+    <div class="intro">
+      <div class="pitch">
+        <p class="kicker">Version 2.0 <span>/</span> formerly PTX</p>
+        <h1>Logs, Kubernetes, Redis and scripts. <span class="quiet">One native workbench.</span></h1>
+        <p class="lead">
+          opsbuf puts the systems behind your code in one window, next to your databases and HTTP requests. Every
+          definition is a plain file in git, and every environment is one keystroke away.
+        </p>
+        <div class="cta">
+          <a class="button primary" routerLink="/" fragment="pricing">Get opsbuf</a>
+          <a class="more" routerLink="/" fragment="features">
+            See what it does <opsbuf-icon name="chevronRight" [size]="15" />
+          </a>
+        </div>
+      </div>
+      <dl class="specs">
+        @for (spec of heroSpecs; track spec.label) {
+          <div>
+            <dt>{{ spec.label }}</dt>
+            <dd>{{ spec.value }}</dd>
+          </div>
+        }
+      </dl>
     </div>
-    <p class="facts">
-      <span>macOS on Apple Silicon</span>
-      <span>Rust core</span>
-      <span>No cloud account</span>
+    <p class="tour-caption">
+      <span>The tour: one incident, from the first error to the fix</span>
+      <span class="how">Click a step or an environment</span>
     </p>
     <opsbuf-showcase class="showcase" id="tour" />
-    <p class="hint">One incident, four tools. Click a step or an environment to explore.</p>
   </div>
 </section>
 

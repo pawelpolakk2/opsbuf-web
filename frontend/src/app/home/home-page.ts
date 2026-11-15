@@ -4,7 +4,7 @@ import { highlightCode } from '../ui/highlight';
 import { Icon } from '../ui/icon';
 import { Logo } from '../ui/logo';
 import { Reveal } from '../ui/reveal';
-import { MODULES, PRINCIPLES, QUESTIONS, SECURITY, SPOTLIGHTS, WORKFLOW, WorkflowStep } from './content';
+import { HERO_SPECS, MODULES, PRINCIPLES, QUESTIONS, SECURITY, SPOTLIGHTS, WORKFLOW, WorkflowStep } from './content';
 import { PricingSection } from './pricing-section';
 import { Showcase } from './showcase/showcase';
 
@@ -24,6 +24,7 @@ const SHORTCUTS = [
   styleUrl: './home-page.scss',
 })
 export class HomePage {
+  protected readonly heroSpecs = HERO_SPECS;
   protected readonly principles = PRINCIPLES;
   protected readonly spotlights = SPOTLIGHTS.map((spotlight) => ({
     ...spotlight,

@@ -3,120 +3,111 @@
 }
 
 .hero {
-  position: relative;
-  margin-top: -68px;
-  padding: 132px 0 56px;
-  overflow: hidden;
+  padding: 56px 0 64px;
 }
 
-.glow {
-  position: absolute;
-  inset: -200px 0 auto;
-  height: 1100px;
-  background:
-    radial-gradient(640px 360px at 50% 20%, rgb(var(--accent-rgb) / 0.22), transparent 70%),
-    radial-gradient(900px 420px at 50% 78%, rgb(var(--accent-rgb) / 0.1), transparent 70%);
-  pointer-events: none;
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: end;
 }
 
-.grid-lines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 70% 55% at 50% 30%, #000 30%, transparent 75%);
-  pointer-events: none;
+.kicker {
+  color: var(--fg-dim);
+  font: 13px var(--mono);
 }
 
-.hero-content {
-  position: relative;
-  text-align: center;
-}
-
-.announce {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 12px 5px 5px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(31, 30, 29, 0.7);
-  color: var(--fg-muted);
-  font-size: 13px;
-}
-
-.announce:hover {
-  color: var(--fg);
-  border-color: #4a4843;
-}
-
-.chip.new {
-  background: rgb(var(--accent-rgb) / 0.16);
-  color: var(--accent);
-  font-family: var(--mono);
+.kicker span {
+  margin: 0 6px;
+  color: var(--fg-faint);
 }
 
 h1 {
-  margin: 24px auto 0;
-  max-width: 920px;
-  font-size: clamp(40px, 6.2vw, 70px);
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 1.02;
+  margin-top: 20px;
+  font-size: clamp(34px, 4.2vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
   text-wrap: balance;
 }
 
+h1 .quiet {
+  display: block;
+  color: var(--fg-dim);
+}
+
 .lead {
-  margin: 22px auto 0;
-  max-width: 660px;
-  font-size: clamp(17px, 2vw, 19px);
+  margin-top: 22px;
+  max-width: 560px;
+  font-size: 18px;
   color: var(--fg-muted);
   text-wrap: pretty;
 }
 
 .cta {
   display: flex;
-  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px 24px;
   margin-top: 30px;
 }
 
-.facts {
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--fg);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.more:hover {
+  color: var(--accent-strong);
+}
+
+.specs {
+  margin: 0;
+}
+
+.specs div {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 16px;
+  padding: 13px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.specs div:last-child {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.specs dt {
+  color: var(--fg-dim);
+  font: 12.5px/1.75 var(--mono);
+}
+
+.specs dd {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 14.5px;
+}
+
+.tour-caption {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px 0;
-  margin-top: 22px;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 52px;
   color: var(--fg-dim);
   font: 12.5px var(--mono);
 }
 
-.facts span + span::before {
-  content: '·';
-  margin: 0 12px;
+.tour-caption .how {
   color: var(--fg-faint);
 }
 
 .showcase {
-  margin: 48px auto 0;
-  max-width: 1132px;
-  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.98);
-  }
-}
-
-.hint {
-  margin-top: 22px;
-  color: var(--fg-faint);
-  font-size: 13px;
+  margin-top: 14px;
 }
 
 .principles {
@@ -499,6 +490,10 @@ details p {
     var(--panel);
 }
 
+.final-card .cta {
+  justify-content: center;
+}
+
 .final-card h2 {
   margin-top: 22px;
   font-size: clamp(30px, 4vw, 44px);
@@ -512,13 +507,12 @@ details p {
   font-size: 17px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .showcase {
-    animation: none;
-  }
-}
-
 @media (max-width: 900px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
   .spotlights,
   .principle-grid {
     grid-template-columns: 1fr;
@@ -552,23 +546,15 @@ details p {
 
 @media (max-width: 600px) {
   .hero {
-    padding-top: 124px;
+    padding: 44px 0 48px;
   }
 
-  h1 br {
-    display: none;
-  }
-
-  .facts {
-    gap: 4px 16px;
-  }
-
-  .facts span + span::before {
-    content: none;
-  }
-
-  .showcase {
+  .tour-caption {
     margin-top: 44px;
+  }
+
+  .tour-caption .how {
+    display: none;
   }
 
   .spotlight-text {
