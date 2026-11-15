@@ -24,6 +24,7 @@ Open http://localhost:4200. The dev server proxies `/api` to the backend on port
 
 | Variable             | Default            | Meaning                                                        |
 |----------------------|--------------------|----------------------------------------------------------------|
+| `PTX_HOST`           | `0.0.0.0`          | Address to listen on; `127.0.0.1` behind a proxy               |
 | `PTX_PORT`           | `8080`             | HTTP port                                                      |
 | `PTX_DATA_FILE`      | `data/store.json`  | JSON file with users, sessions, licenses and orders            |
 | `PTX_WEB_DIR`        | none               | Built frontend to serve as a single-page app                   |

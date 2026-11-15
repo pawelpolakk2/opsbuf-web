@@ -24,7 +24,7 @@ fun main() {
     val config = AppConfig.fromEnvironment()
     val di = createDi(config)
     LoggerFactory.getLogger("ptx.web").info("PTX web listens on http://localhost:{}", config.port)
-    embeddedServer(CIO, port = config.port) { ptxModule(di) }.start(wait = true)
+    embeddedServer(CIO, port = config.port, host = config.host) { ptxModule(di) }.start(wait = true)
 }
 
 fun createDi(config: AppConfig) = DI {

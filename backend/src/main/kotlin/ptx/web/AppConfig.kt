@@ -7,6 +7,7 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 data class AppConfig(
+    val host: String = "0.0.0.0",
     val port: Int = 8080,
     val dataFile: Path? = Path.of("data/store.json"),
     val webDir: Path? = null,
@@ -24,6 +25,7 @@ data class AppConfig(
 
     companion object {
         fun fromEnvironment(env: Map<String, String> = System.getenv()): AppConfig = AppConfig(
+            host = env["PTX_HOST"] ?: "0.0.0.0",
             port = env["PTX_PORT"]?.toInt() ?: 8080,
             dataFile = Path.of(env["PTX_DATA_FILE"] ?: "data/store.json"),
             webDir = env["PTX_WEB_DIR"]?.let(Path::of),

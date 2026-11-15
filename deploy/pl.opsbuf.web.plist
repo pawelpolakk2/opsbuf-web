@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>pl.opsbuf.web</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>__HOME__/Apps/opsbuf-web/backend/bin/ptx-web-backend</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>JAVA_HOME</key>
+        <string>__JAVA_HOME__</string>
+        <key>PTX_HOST</key>
+        <string>127.0.0.1</string>
+        <key>PTX_PORT</key>
+        <string>__PORT__</string>
+        <key>PTX_DATA_FILE</key>
+        <string>__HOME__/Apps/opsbuf-web/data/store.json</string>
+        <key>PTX_WEB_DIR</key>
+        <string>__HOME__/Apps/opsbuf-web/web</string>
+    </dict>
+    <key>WorkingDirectory</key>
+    <string>__HOME__/Apps/opsbuf-web</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>__HOME__/Apps/logs/opsbuf-web.log</string>
+    <key>StandardErrorPath</key>
+    <string>__HOME__/Apps/logs/opsbuf-web-error.log</string>
+</dict>
+</plist>
