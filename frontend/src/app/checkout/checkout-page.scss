@@ -1,0 +1,190 @@
+.wrap {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-dim);
+  font-size: 14px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+  margin-top: 24px;
+  align-items: start;
+}
+
+.form,
+.summary {
+  padding: 32px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+.lead {
+  margin-top: 8px;
+  color: var(--fg-muted);
+}
+
+h2 {
+  margin: 30px 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg-dim);
+  letter-spacing: 0.02em;
+}
+
+.summary h2 {
+  margin-top: 0;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.option {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--rail);
+  color: var(--fg);
+  font: 15px var(--sans);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.option span {
+  font-size: 13px;
+  color: var(--fg-dim);
+}
+
+.option.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.15);
+}
+
+.seats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: var(--fg-dim);
+  font-size: 14px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.stepper button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: var(--control);
+  color: var(--fg);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.stepper output {
+  width: 56px;
+  text-align: center;
+  font: 500 16px var(--mono);
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-muted);
+}
+
+.account ptx-icon {
+  color: var(--ok);
+}
+
+dl {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+dl div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+dt {
+  color: var(--fg-dim);
+}
+
+dd {
+  margin: 0;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 22px 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.total strong {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+}
+
+.summary .button {
+  width: 100%;
+}
+
+.summary .notice {
+  margin-bottom: 14px;
+}
+
+.demo {
+  margin-top: 14px;
+  color: var(--fg-faint);
+  font-size: 13px;
+}
+
+.loading {
+  margin-top: 40px;
+  color: var(--fg-dim);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .form,
+  .summary {
+    padding: 24px 20px;
+  }
+}

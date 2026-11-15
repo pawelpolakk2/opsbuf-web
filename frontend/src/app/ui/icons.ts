@@ -1,0 +1,50 @@
+// Icon paths copied from the PTX desktop app (ptx-rust apps/desktop/src/app/ui/icons.ts), so the site matches the app.
+export const ICON_PATHS = {
+  toolbox: 'M3 9h18v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM8 9V6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M3 13h18M10 13v2h4v-2',
+  comment: 'M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+  claude: 'M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4',
+  folder: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
+  file: 'M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5',
+  database: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3',
+  logs: 'M4 6h16M4 10h10M4 14h16M4 18h8',
+  globe: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z',
+  k8s: 'M12 2.5l8.2 4.7v9.6L12 21.5l-8.2-4.7V7.2zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM12 2.5V9M12 15v6.5M3.8 7.2l5.6 3.3M14.6 13.5l5.6 3.3M20.2 7.2l-5.6 3.3M9.4 13.5l-5.6 3.3',
+  redis: 'M12 3l9 4.5-9 4.5-9-4.5zM3 12l9 4.5 9-4.5M3 16.5L12 21l9-4.5',
+  shield: 'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4',
+  eye: 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+  plus: 'M12 5v14M5 12h14',
+  pencil: 'M4 20h4L19 9l-4-4L4 16zM14 6l4 4',
+  close: 'M6 6l12 12M18 6L6 18',
+  settings:
+    'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19 12l2-1-1-3-2 .2-1.3-1.3.2-2-3-1-1 2h-1.8l-1-2-3 1 .2 2L6 7.2 4 7l-1 3 2 1v1.8l-2 1 1 3 2-.2 1.3 1.3-.2 2 3 1 1-2h1.8l1 2 3-1-.2-2 1.3-1.3 2 .2 1-3-2-1z',
+  search: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4',
+  magnifier: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4',
+  cloud: 'M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 9.1 4.5 4.5 0 0 0 7 18z',
+  bell: 'M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0',
+  filter: 'M3 5h18l-7 8.5V19l-4 2v-7.5z',
+  tag: 'M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8zM7.5 7.5h.01',
+  check: 'M5 12.5l4.5 4.5L19 7.5',
+  share: 'M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M12 15V3M8 7l4-4 4 4',
+  import: 'M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M12 3v12M8 11l4 4 4-4',
+  calendar: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',
+  columns: 'M4 4h16v16H4zM9.5 4v16M14.5 4v16',
+  table: 'M4 5h16v14H4zM4 10h16M4 15h16M10 5v14',
+  terminal: 'M4 5h16v14H4zM8 10l3 2-3 2M13 15h3',
+  sidePanel: 'M6 5h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM9.5 5v14',
+  bottomPanel: 'M6 5h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM4 14.5h16',
+  rightPanel: 'M6 5h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM14.5 5v14',
+  arrowUp: 'M12 19V5M5 12l7-7 7 7',
+  undo: 'M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11',
+  lock: 'M6 11h12v9H6zM8 11V8a4 4 0 0 1 8 0v3',
+  chevronDown: 'M6 9l6 6 6-6',
+  chevronUp: 'M6 15l6-6 6 6',
+  chevronRight: 'M9 6l6 6-6 6',
+  play: 'M8 5.6v12.8a1.3 1.3 0 0 0 2 1.1l10.2-6.4a1.3 1.3 0 0 0 0-2.2L10 4.5a1.3 1.3 0 0 0-2 1.1z',
+  script: 'M4 4h16v16H4zM10 9v6l5-3z',
+  more: 'M3.2 12a1.8 1.8 0 1 0 3.6 0 1.8 1.8 0 1 0-3.6 0zM10.2 12a1.8 1.8 0 1 0 3.6 0 1.8 1.8 0 1 0-3.6 0zM17.2 12a1.8 1.8 0 1 0 3.6 0 1.8 1.8 0 1 0-3.6 0z',
+} as const;
+
+export type IconName = keyof typeof ICON_PATHS;
+
+// the mockup draws these with fill instead of stroke; `more` is its three 1.8 px circles
+export const FILLED_ICONS: ReadonlySet<IconName> = new Set<IconName>(['play', 'more']);
