@@ -20,7 +20,18 @@
   --warn: #e0c46c;
   --error: #ef7b6b;
   --code-identifier: #6fc8d6;
+  --app-bg: #262624;
+  --pressed: #3a3935;
+  --border-dashed: #4f4e49;
+  --surface-sunken: #22211f;
+  --tint-logs: #3d2c25;
+  --tint-k8s: #1f3330;
+  --tint-http: #2f2a3a;
+  --chart-1: #3987e5;
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
   --module-project: #b4b1a6;
+  --module-git: #74c7ec;
   --module-data: #8ab4f8;
   --module-logs: #f0a585;
   --module-redis: #d9a8a8;
@@ -36,8 +47,10 @@
   --radius: 14px;
   --radius-small: 8px;
   --page: 1180px;
-  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --app-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --app-mono: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
 }
 
 *,
@@ -78,7 +91,7 @@ h4 {
   margin: 0;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 p {
@@ -121,6 +134,8 @@ kbd {
 .section-title {
   margin-top: 14px;
   font-size: clamp(30px, 4vw, 46px);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 .section-lead {
@@ -130,11 +145,8 @@ kbd {
   font-size: 18px;
 }
 
-.gradient-text {
-  background: linear-gradient(100deg, #f3c6b2 0%, var(--accent) 45%, #c3a6f0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.accent-text {
+  color: var(--accent);
 }
 
 .button {
@@ -148,7 +160,7 @@ kbd {
   border: 1px solid var(--border);
   background: var(--control);
   color: var(--fg);
-  font: 550 15px/1 var(--sans);
+  font: 500 15px/1 var(--sans);
   cursor: pointer;
   transition:
     background 0.15s,
@@ -268,7 +280,7 @@ kbd {
   background: var(--chip);
   color: var(--fg-muted);
   font-size: 12px;
-  font-weight: 550;
+  font-weight: 500;
 }
 
 kbd {

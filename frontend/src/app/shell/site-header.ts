@@ -2,21 +2,22 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { Router, RouterLink } from '@angular/router';
 import { Session } from '../core/session';
 import { Icon } from '../ui/icon';
+import { Logo } from '../ui/logo';
 
 @Component({
   selector: 'opsbuf-site-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Icon],
+  imports: [RouterLink, Icon, Logo],
   host: { '(window:scroll)': 'updateScrolled()' },
   template: `
     <header [class.scrolled]="isScrolled()">
       <div class="page bar">
         <a class="brand" routerLink="/" (click)="closeMenu()">
-          <span class="logo"><opsbuf-icon name="toolbox" [size]="18" [strokeWidth]="2" /></span>
+          <opsbuf-logo [size]="28" />
           <span>opsbuf</span>
-          <span class="version">rust</span>
         </a>
         <nav [class.open]="isMenuOpen()">
+          <a routerLink="/" fragment="features" (click)="closeMenu()">Features</a>
           <a routerLink="/" fragment="modules" (click)="closeMenu()">Modules</a>
           <a routerLink="/" fragment="workflow" (click)="closeMenu()">Workflow</a>
           <a routerLink="/" fragment="security" (click)="closeMenu()">Security</a>
@@ -32,7 +33,7 @@ import { Icon } from '../ui/icon';
               <a class="button small ghost" routerLink="/login" (click)="closeMenu()">Sign in</a>
             }
             <a class="button small primary" routerLink="/" fragment="pricing" (click)="closeMenu()">
-              Buy opsbuf
+              Get opsbuf
             </a>
           </span>
         </nav>
@@ -73,25 +74,7 @@ import { Icon } from '../ui/icon';
       color: var(--fg);
       font-weight: 700;
       font-size: 18px;
-      letter-spacing: 0.02em;
-    }
-
-    .logo {
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      border-radius: 8px;
-      background: var(--accent);
-      color: #1a1312;
-    }
-
-    .version {
-      font: 500 11px var(--mono);
-      color: var(--fg-dim);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1px 6px;
+      letter-spacing: 0.03em;
     }
 
     nav {
@@ -99,7 +82,7 @@ import { Icon } from '../ui/icon';
       display: flex;
       align-items: center;
       gap: 26px;
-      margin-left: 18px;
+      margin-left: 22px;
     }
 
     nav > a {
