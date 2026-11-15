@@ -45,7 +45,7 @@ h1 {
   display: grid;
   place-items: center;
   border-radius: 14px;
-  background: rgba(217, 119, 87, 0.14);
+  background: rgb(var(--accent-rgb) / 0.14);
   color: var(--accent);
 }
 

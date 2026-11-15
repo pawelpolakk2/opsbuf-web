@@ -36,7 +36,7 @@
 }
 
 .view-chip.active {
-  border-color: var(--accent);
+  border-color: var(--app-accent);
   background: var(--tint-logs);
 }
 
@@ -97,7 +97,7 @@
   width: 1.5px;
   height: 14px;
   margin-left: -6px;
-  background: var(--accent);
+  background: var(--app-accent);
   animation: blink 1s steps(1) infinite;
 }
 

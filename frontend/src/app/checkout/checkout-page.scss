@@ -74,7 +74,7 @@ h2 {
 
 .option.active {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.15);
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.15);
 }
 
 .seats {

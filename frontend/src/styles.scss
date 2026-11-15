@@ -13,9 +13,14 @@
   --fg-muted: #b4b1a6;
   --fg-dim: #9b988d;
   --fg-faint: #6f6d65;
-  --accent: #d97757;
-  --accent-strong: #e8865f;
-  --link: #e59a7b;
+  --accent: #8c90f8;
+  --accent-strong: #b9bbff;
+  --accent-fill: #5c60d6;
+  --accent-fill-hover: #6266dc;
+  --accent-rgb: 103 107 224;
+  --on-accent: #ffffff;
+  --link: #a5a8fb;
+  --app-accent: #d97757;
   --ok: #7fd4a3;
   --warn: #e0c46c;
   --error: #ef7b6b;
@@ -105,7 +110,7 @@ kbd {
 }
 
 ::selection {
-  background: rgba(217, 119, 87, 0.35);
+  background: rgb(var(--accent-rgb) / 0.35);
 }
 
 .page {
@@ -186,16 +191,16 @@ kbd {
 }
 
 .button.primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #1a1312;
-  box-shadow: 0 8px 28px -10px rgba(217, 119, 87, 0.7);
+  background: var(--accent-fill);
+  border-color: var(--accent-fill);
+  color: var(--on-accent);
+  box-shadow: 0 8px 28px -10px rgb(var(--accent-rgb) / 0.7);
 }
 
 .button.primary:hover {
-  background: var(--accent-strong);
-  border-color: var(--accent-strong);
-  color: #1a1312;
+  background: var(--accent-fill-hover);
+  border-color: var(--accent-fill-hover);
+  color: var(--on-accent);
 }
 
 .button.ghost {
@@ -246,7 +251,7 @@ kbd {
 
 .input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.18);
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.18);
 }
 
 .notice {

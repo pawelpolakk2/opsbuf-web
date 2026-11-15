@@ -14,8 +14,8 @@
   inset: -200px 0 auto;
   height: 1100px;
   background:
-    radial-gradient(640px 360px at 50% 20%, rgba(217, 119, 87, 0.22), transparent 70%),
-    radial-gradient(900px 420px at 50% 78%, rgba(217, 119, 87, 0.1), transparent 70%);
+    radial-gradient(640px 360px at 50% 20%, rgb(var(--accent-rgb) / 0.22), transparent 70%),
+    radial-gradient(900px 420px at 50% 78%, rgb(var(--accent-rgb) / 0.1), transparent 70%);
   pointer-events: none;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .chip.new {
-  background: rgba(217, 119, 87, 0.16);
+  background: rgb(var(--accent-rgb) / 0.16);
   color: var(--accent);
   font-family: var(--mono);
 }
@@ -493,9 +493,9 @@ details p {
   padding: 72px 32px;
   border-radius: 24px;
   text-align: center;
-  border: 1px solid rgba(217, 119, 87, 0.3);
+  border: 1px solid rgb(var(--accent-rgb) / 0.3);
   background:
-    radial-gradient(600px 260px at 50% 0%, rgba(217, 119, 87, 0.22), transparent 70%),
+    radial-gradient(600px 260px at 50% 0%, rgb(var(--accent-rgb) / 0.22), transparent 70%),
     var(--panel);
 }
 
