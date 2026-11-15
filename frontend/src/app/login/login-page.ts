@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiFailure, PtxApi } from '../core/ptx-api';
+import { ApiFailure, OpsbufApi } from '../core/opsbuf-api';
 import { Session } from '../core/session';
 import { Icon } from '../ui/icon';
 
 type LoginStep = 'email' | 'code';
 
 @Component({
-  selector: 'ptx-login-page',
+  selector: 'opsbuf-login-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, Icon],
   template: `
     <div class="page wrap">
       <div class="card box">
-        <span class="logo"><ptx-icon name="lock" [size]="22" /></span>
+        <span class="logo"><opsbuf-icon name="lock" [size]="22" /></span>
         @if (step() === 'email') {
-          <h1>Sign in to PTX</h1>
+          <h1>Sign in to opsbuf</h1>
           <p class="lead">We send a 6-digit code to your email. No password to remember.</p>
           <form (ngSubmit)="sendCode()">
             <div class="field">
@@ -83,7 +83,7 @@ type LoginStep = 'email' | 'code';
   styleUrl: './login-page.scss',
 })
 export class LoginPage {
-  private readonly api = inject(PtxApi);
+  private readonly api = inject(OpsbufApi);
   private readonly session = inject(Session);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);

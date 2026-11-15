@@ -1,6 +1,6 @@
-package ptx.web.licensing
+package opsbuf.web.licensing
 
-import ptx.web.Secrets
+import opsbuf.web.Secrets
 
 data class Charge(val email: String, val amountCents: Long, val currency: String, val description: String)
 

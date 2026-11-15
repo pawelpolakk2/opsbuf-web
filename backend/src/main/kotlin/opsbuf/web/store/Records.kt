@@ -1,4 +1,4 @@
-package ptx.web.store
+package opsbuf.web.store
 
 import kotlinx.serialization.Serializable
 

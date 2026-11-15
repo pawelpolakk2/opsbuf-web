@@ -1,4 +1,4 @@
-package ptx.web
+package opsbuf.web
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
@@ -16,17 +16,17 @@ import kotlinx.serialization.json.Json
 import org.kodein.di.DI
 import org.kodein.di.instance
 import org.slf4j.LoggerFactory
-import ptx.web.auth.AuthService
-import ptx.web.http.ErrorResponse
-import ptx.web.http.SESSION_AUTH
-import ptx.web.http.SessionPrincipal
-import ptx.web.http.activationRoutes
-import ptx.web.http.authRoutes
-import ptx.web.http.licenseRoutes
-import ptx.web.http.planRoutes
-import ptx.web.licensing.LicenseService
+import opsbuf.web.auth.AuthService
+import opsbuf.web.http.ErrorResponse
+import opsbuf.web.http.SESSION_AUTH
+import opsbuf.web.http.SessionPrincipal
+import opsbuf.web.http.activationRoutes
+import opsbuf.web.http.authRoutes
+import opsbuf.web.http.licenseRoutes
+import opsbuf.web.http.planRoutes
+import opsbuf.web.licensing.LicenseService
 
-fun Application.ptxModule(di: DI) {
+fun Application.opsbufModule(di: DI) {
     val config: AppConfig by di.instance()
     val auth: AuthService by di.instance()
     val licenses: LicenseService by di.instance()
@@ -53,7 +53,7 @@ private fun Application.installJson() = install(ContentNegotiation) {
 }
 
 private fun Application.installErrorPages() = install(StatusPages) {
-    val log = LoggerFactory.getLogger("ptx.web.errors")
+    val log = LoggerFactory.getLogger("opsbuf.web.errors")
     exception<BadRequestException> { call, cause ->
         call.respond(HttpStatusCode.BadRequest, ErrorResponse(cause.message ?: "The request is not valid."))
     }

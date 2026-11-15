@@ -8,7 +8,7 @@ port=7480
 label=pl.opsbuf.web
 
 mkdir -p "$app/data" "$HOME/Apps/logs"
-rsync -a --delete backend/build/install/ptx-web-backend/ "$app/backend/"
+rsync -a --delete backend/build/install/opsbuf-web-backend/ "$app/backend/"
 rsync -a --delete frontend/dist/frontend/browser/ "$app/web/"
 sed -e "s|__HOME__|$HOME|g" -e "s|__PORT__|$port|g" -e "s|__JAVA_HOME__|$JAVA_HOME|g" deploy/$label.plist > "$HOME/Library/LaunchAgents/$label.plist"
 

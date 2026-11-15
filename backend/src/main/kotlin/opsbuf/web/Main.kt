@@ -1,4 +1,4 @@
-package ptx.web
+package opsbuf.web
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO as ClientCIO
@@ -10,21 +10,21 @@ import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import org.kodein.di.instance
 import org.slf4j.LoggerFactory
-import ptx.web.auth.AuthService
-import ptx.web.licensing.DemoPaymentGateway
-import ptx.web.licensing.LicenseService
-import ptx.web.licensing.PaymentGateway
-import ptx.web.mail.LogMailer
-import ptx.web.mail.Mailer
-import ptx.web.mail.ResendMailer
-import ptx.web.store.Store
+import opsbuf.web.auth.AuthService
+import opsbuf.web.licensing.DemoPaymentGateway
+import opsbuf.web.licensing.LicenseService
+import opsbuf.web.licensing.PaymentGateway
+import opsbuf.web.mail.LogMailer
+import opsbuf.web.mail.Mailer
+import opsbuf.web.mail.ResendMailer
+import opsbuf.web.store.Store
 import java.time.Clock
 
 fun main() {
     val config = AppConfig.fromEnvironment()
     val di = createDi(config)
-    LoggerFactory.getLogger("ptx.web").info("PTX web listens on http://localhost:{}", config.port)
-    embeddedServer(CIO, port = config.port, host = config.host) { ptxModule(di) }.start(wait = true)
+    LoggerFactory.getLogger("opsbuf.web").info("opsbuf web listens on http://localhost:{}", config.port)
+    embeddedServer(CIO, port = config.port, host = config.host) { opsbufModule(di) }.start(wait = true)
 }
 
 fun createDi(config: AppConfig) = DI {

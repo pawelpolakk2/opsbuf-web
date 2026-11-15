@@ -145,11 +145,11 @@ environments:
   dev:
     host: localhost:5433
     database: orders
-    user: ptx_dev
+    user: opsbuf_dev
   prod:
     host: orders-replica.prod.internal:5432
     database: orders
-    user: ptx_readonly
+    user: opsbuf_readonly
     password: \${keychain:orders-prod}   # never a secret in git
     read_only: true
 tables: auto                  # every table in schema public`,
@@ -159,7 +159,7 @@ tables: auto                  # every table in schema public`,
     eyebrow: 'Environments',
     title: 'One switch for every environment',
     text: 'A coloured bar on top tells you where you are. Switch with ⌘1 … ⌘9 and every module follows: queries, logs, requests, clusters and scripts.',
-    points: ['read_only and confirm_writes per environment', 'An extra confirmation on production', 'Every submit appended to .ptx/history.jsonl'],
+    points: ['read_only and confirm_writes per environment', 'An extra confirmation on production', 'Every submit appended to .opsbuf/history.jsonl'],
     sample: {
       file: 'environments.yaml',
       language: 'yaml',
@@ -184,8 +184,8 @@ environments:
   {
     eyebrow: 'Requests',
     title: 'HTTP with real code inside',
-    text: 'Write requests next to small TypeScript functions. Variables come from the active environment, tokens from your Keychain, and the PTX plugin turns calls you click through in Chrome into endpoints.',
-    points: ['Imports from lib/*.ts and npm packages', 'Completion and hover in Monaco', 'Run from the app or with ptx http send'],
+    text: 'Write requests next to small TypeScript functions. Variables come from the active environment, tokens from your Keychain, and the opsbuf plugin turns calls you click through in Chrome into endpoints.',
+    points: ['Imports from lib/*.ts and npm packages', 'Completion and hover in Monaco', 'Run from the app or with opsbuf http send'],
     sample: {
       file: 'http/billing.http',
       language: 'http',
@@ -207,7 +207,7 @@ Content-Type: application/json
     eyebrow: 'Scripts',
     title: 'Scripts that report, not just print',
     text: 'Turn the calculation you repeat every week into a form. Run it, watch the progress, read a report with metrics, checks and charts, and keep every run next to the script.',
-    points: ['params become fields, presets fill them', 'sql() on the sources the script uses', 'ptx script run does the same in a terminal'],
+    points: ['params become fields, presets fill them', 'sql() on the sources the script uses', 'opsbuf script run does the same in a terminal'],
     sample: {
       file: 'scripts/refund-estimate.script.yaml',
       language: 'yaml',
@@ -231,27 +231,27 @@ presets:
   {
     eyebrow: 'Command line',
     title: 'The same core in your terminal and CI',
-    text: 'The ptx CLI shares its Rust core with the desktop app. Validate projects in CI, dry-run a change set, send a request or run a script from a shell.',
-    points: ['ptx validate exits 1 on errors', 'apply refuses prod without --yes', 'JSON output for your own tools'],
+    text: 'The opsbuf CLI shares its Rust core with the desktop app. Validate projects in CI, dry-run a change set, send a request or run a script from a shell.',
+    points: ['opsbuf validate exits 1 on errors', 'apply refuses prod without --yes', 'JSON output for your own tools'],
     sample: {
       file: 'terminal',
       language: 'shell',
-      code: `ptx validate .
+      code: `opsbuf validate .
 # ✓ 21 files, 0 errors
 
-ptx http send http/billing.http#3 --env dev
+opsbuf http send http/billing.http#3 --env dev
 # 200 OK · 142 ms
 
-ptx script run scripts/refund-estimate.script.yaml --env prod --set since=now-7d
+opsbuf script run scripts/refund-estimate.script.yaml --env prod --set since=now-7d
 # ✓ refunds: 1 284 · estimate: € 18 420
 
-ptx apply changes.json --env prod --dry-run`,
+opsbuf apply changes.json --env prod --dry-run`,
     },
   },
   {
     eyebrow: 'AI native',
     title: 'Built for working with Claude',
-    text: 'PTX writes docs for every file kind and points your CLAUDE.md at them. An assistant writes a query or a script in the documented format, runs ptx validate, and PTX picks the change up at once.',
+    text: 'opsbuf writes docs for every file kind and points your CLAUDE.md at them. An assistant writes a query or a script in the documented format, runs opsbuf validate, and opsbuf picks the change up at once.',
     points: ['Docs that always match the installed version', 'Prompts module for reviewed tasks', 'Rules: documented fields only, no secrets'],
     sample: {
       file: 'prompts/tenant-names.prompt.md',
@@ -266,7 +266,7 @@ Every tenantId in a response shows the tenant name next to it.
 - http/billing.http has the requests to check
 
 ## Done when
-- ptx validate . passes
+- opsbuf validate . passes
 - request #3 shows "Acme Corp" next to its id`,
     },
   },
@@ -276,7 +276,7 @@ export const SECURITY: SecurityPoint[] = [
   {
     icon: 'lock',
     title: 'Secrets stay in the Keychain',
-    text: 'Files say ${keychain:name}. PTX reads the macOS Keychain when it needs the value, so nothing secret lands in git.',
+    text: 'Files say ${keychain:name}. opsbuf reads the macOS Keychain when it needs the value, so nothing secret lands in git.',
   },
   {
     icon: 'shield',
@@ -307,16 +307,16 @@ export const SECURITY: SecurityPoint[] = [
 
 export const QUESTIONS: Question[] = [
   {
-    question: 'Which platforms does PTX run on?',
+    question: 'Which platforms does opsbuf run on?',
     answer: 'The release build is for macOS on Apple Silicon. The core and the CLI are Rust and build on Linux and Windows too.',
   },
   {
     question: 'What does a license cover?',
-    answer: 'Every module, the ptx CLI and the Chrome plugin, with every update while the license runs. Personal covers 2 machines, each Team seat covers 3.',
+    answer: 'Every module, the opsbuf CLI and the Chrome plugin, with every update while the license runs. Personal covers 2 machines, each Team seat covers 3.',
   },
   {
-    question: 'How do I activate PTX on a machine?',
-    answer: 'Sign in here, copy the license key from Licenses and paste it into PTX. You can see every activated machine and free one up at any time.',
+    question: 'How do I activate opsbuf on a machine?',
+    answer: 'Sign in here, copy the license key from Licenses and paste it into opsbuf. You can see every activated machine and free one up at any time.',
   },
   {
     question: 'Can I move seats between people?',
@@ -327,7 +327,7 @@ export const QUESTIONS: Question[] = [
     answer: 'The license keeps working until the end of the paid period. Then it stops renewing. You can resume it before that date.',
   },
   {
-    question: 'Does PTX send my data anywhere?',
-    answer: 'No. PTX connects from your machine to your own databases, clusters and APIs. Only the license check talks to us.',
+    question: 'Does opsbuf send my data anywhere?',
+    answer: 'No. opsbuf connects from your machine to your own databases, clusters and APIs. Only the license check talks to us.',
   },
 ];

@@ -1,7 +1,7 @@
-package ptx.web.licensing
+package opsbuf.web.licensing
 
 import kotlinx.serialization.Serializable
-import ptx.web.store.Billing
+import opsbuf.web.store.Billing
 
 @Serializable
 data class Plan(
@@ -34,7 +34,7 @@ object Plans {
             devicesPerSeat = 2,
             features = listOf(
                 "All modules: Data, Logs, Redis, HTTP, Kubernetes, Scripts, Prompts, Access, Builds",
-                "The ptx CLI and the Chrome capture plugin",
+                "The opsbuf CLI and the Chrome capture plugin",
                 "2 activated machines",
                 "Every update while the license runs",
             ),

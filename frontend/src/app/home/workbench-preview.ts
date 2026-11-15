@@ -97,7 +97,7 @@ const LOG_LINES = [
 const REPORT_BARS = [42, 58, 35, 71, 64, 88, 76];
 
 @Component({
-  selector: 'ptx-workbench-preview',
+  selector: 'opsbuf-workbench-preview',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [Icon],
   template: `
@@ -127,7 +127,7 @@ const REPORT_BARS = [42, 58, 35, 71, 64, 88, 76];
               [title]="module.name"
               (click)="selectModule(module.id)"
             >
-              <ptx-icon [name]="module.icon" [size]="18" />
+              <opsbuf-icon [name]="module.icon" [size]="18" />
             </button>
           }
         </nav>
@@ -143,7 +143,7 @@ const REPORT_BARS = [42, 58, 35, 71, 64, 88, 76];
             <pre class="file" [innerHTML]="activeCode()"></pre>
             <div class="view">
               @if (environment().key === 'prod') {
-                <div class="readonly"><ptx-icon name="lock" [size]="13" /> PROD is read-only</div>
+                <div class="readonly"><opsbuf-icon name="lock" [size]="13" /> PROD is read-only</div>
               }
               @switch (activeTab().kind) {
                 @case ('table') {
@@ -200,7 +200,7 @@ const REPORT_BARS = [42, 58, 35, 71, 64, 88, 76];
           <div class="status-bar">
             <span><i [style.background]="environment().color"></i>{{ environment().label }}</span>
             <span>21 files · 0 errors</span>
-            <span class="right">PTX 1.9 · Rust core</span>
+            <span class="right">opsbuf 1.9 · Rust core</span>
           </div>
         </div>
       </div>

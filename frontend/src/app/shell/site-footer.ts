@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Icon } from '../ui/icon';
 
 @Component({
-  selector: 'ptx-site-footer',
+  selector: 'opsbuf-site-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, Icon],
   template: `
@@ -11,7 +11,7 @@ import { Icon } from '../ui/icon';
       <div class="page grid">
         <div class="about">
           <a class="brand" routerLink="/">
-            <span class="logo"><ptx-icon name="toolbox" [size]="16" [strokeWidth]="2" /></span> PTX
+            <span class="logo"><opsbuf-icon name="toolbox" [size]="16" [strokeWidth]="2" /></span> opsbuf
           </a>
           <p>The programmer's toolbox. One native workbench for every system you touch, defined in git.</p>
         </div>
@@ -29,7 +29,7 @@ import { Icon } from '../ui/icon';
         </div>
       </div>
       <div class="page legal">
-        <span>© {{ year }} PTX</span>
+        <span>© {{ year }} opsbuf</span>
         <span>Rust core · Tauri 2 · Angular</span>
       </div>
     </footer>

@@ -3,20 +3,20 @@
   <div class="grid-lines"></div>
   <div class="page hero-content">
     <a class="announce" routerLink="/" fragment="workflow">
-      <span class="chip new">New</span> PTX 1.9 · Scripts with reports, Redis keys view, Chrome capture
-      <ptx-icon name="chevronRight" [size]="14" />
+      <span class="chip new">New</span> opsbuf 1.9 · Scripts with reports, Redis keys view, Chrome capture
+      <opsbuf-icon name="chevronRight" [size]="14" />
     </a>
     <h1>
       Every system you touch.<br />
       <span class="gradient-text">One workbench, in git.</span>
     </h1>
     <p class="lead">
-      PTX is a native developer workbench. Databases, logs, Redis, HTTP, Kubernetes and scripts for
+      opsbuf is a native developer workbench. Databases, logs, Redis, HTTP, Kubernetes and scripts for
       every environment, defined as plain files next to your code.
     </p>
     <div class="cta">
       <a class="button primary" routerLink="/" fragment="pricing">
-        Get a license <ptx-icon name="chevronRight" [size]="16" />
+        Get a license <opsbuf-icon name="chevronRight" [size]="16" />
       </a>
       <a class="button" routerLink="/" fragment="modules">See all modules</a>
     </div>
@@ -26,14 +26,14 @@
       <span><strong>⌘1–9</strong> environments</span>
       <span><strong>0</strong> secrets in files</span>
     </div>
-    <ptx-workbench-preview class="preview" />
+    <opsbuf-workbench-preview class="preview" />
     <p class="hint">Try it: switch the environment or click the module icons on the left.</p>
   </div>
 </section>
 
 <section class="section" id="modules">
   <div class="page">
-    <div ptxReveal>
+    <div opsbufReveal>
       <span class="eyebrow">Modules</span>
       <h2 class="section-title">Ten tools you used to keep in ten windows</h2>
       <p class="section-lead">
@@ -43,15 +43,15 @@
     </div>
     <div class="modules">
       @for (module of modules; track module.id) {
-        <article class="module card" ptxReveal [style.--module]="module.color">
+        <article class="module card" opsbufReveal [style.--module]="module.color">
           <div class="module-head">
-            <span class="module-icon"><ptx-icon [name]="module.icon" [size]="20" /></span>
+            <span class="module-icon"><opsbuf-icon [name]="module.icon" [size]="20" /></span>
             <h3>{{ module.name }}</h3>
           </div>
           <p>{{ module.summary }}</p>
           <ul>
             @for (point of module.points; track point) {
-              <li><ptx-icon name="check" [size]="14" [strokeWidth]="2.2" />{{ point }}</li>
+              <li><opsbuf-icon name="check" [size]="14" [strokeWidth]="2.2" />{{ point }}</li>
             }
           </ul>
           <div class="files">
@@ -67,7 +67,7 @@
 
 <section class="section workflow" id="workflow">
   <div class="page">
-    <div ptxReveal class="centered">
+    <div opsbufReveal class="centered">
       <span class="eyebrow">Workflow</span>
       <h2 class="section-title">Tooling you can review in a pull request</h2>
       <p class="section-lead">
@@ -76,23 +76,23 @@
       </p>
     </div>
     @for (step of workflow; track step.title; let odd = $odd) {
-      <div class="step" [class.flipped]="odd" ptxReveal>
+      <div class="step" [class.flipped]="odd" opsbufReveal>
         <div class="step-text">
           <span class="eyebrow">{{ step.eyebrow }}</span>
           <h3>{{ step.title }}</h3>
           <p>{{ step.text }}</p>
           <ul>
             @for (point of step.points; track point) {
-              <li><ptx-icon name="check" [size]="15" [strokeWidth]="2.2" />{{ point }}</li>
+              <li><opsbuf-icon name="check" [size]="15" [strokeWidth]="2.2" />{{ point }}</li>
             }
           </ul>
         </div>
         <div class="step-code card" [class.terminal]="isTerminal(step)">
           <div class="code-head">
             @if (isTerminal(step)) {
-              <ptx-icon name="terminal" [size]="14" />
+              <opsbuf-icon name="terminal" [size]="14" />
             } @else {
-              <ptx-icon name="file" [size]="14" />
+              <opsbuf-icon name="file" [size]="14" />
             }
             {{ step.sample.file }}
           </div>
@@ -100,7 +100,7 @@
         </div>
       </div>
     }
-    <div class="keyboard card" ptxReveal>
+    <div class="keyboard card" opsbufReveal>
       <div>
         <span class="eyebrow">Keyboard first</span>
         <h3>Your hands stay on the keys</h3>
@@ -124,18 +124,18 @@
 
 <section class="section" id="security">
   <div class="page">
-    <div ptxReveal>
+    <div opsbufReveal>
       <span class="eyebrow">Security</span>
       <h2 class="section-title">Safe with production, by default</h2>
       <p class="section-lead">
-        PTX touches the systems that matter. It keeps secrets out of files, keeps production
+        opsbuf touches the systems that matter. It keeps secrets out of files, keeps production
         read-only and writes down what it did.
       </p>
     </div>
     <div class="security">
       @for (point of security; track point.title) {
-        <article class="card" ptxReveal>
-          <span class="security-icon"><ptx-icon [name]="point.icon" [size]="20" /></span>
+        <article class="card" opsbufReveal>
+          <span class="security-icon"><opsbuf-icon [name]="point.icon" [size]="20" /></span>
           <h3>{{ point.title }}</h3>
           <p>{{ point.text }}</p>
         </article>
@@ -144,18 +144,18 @@
   </div>
 </section>
 
-<ptx-pricing-section id="pricing" />
+<opsbuf-pricing-section id="pricing" />
 
 <section class="section" id="faq">
   <div class="page faq">
-    <div ptxReveal>
+    <div opsbufReveal>
       <span class="eyebrow">FAQ</span>
       <h2 class="section-title">Questions</h2>
     </div>
-    <div class="questions" ptxReveal>
+    <div class="questions" opsbufReveal>
       @for (item of questions; track item.question) {
         <details>
-          <summary>{{ item.question }}<ptx-icon name="plus" [size]="18" /></summary>
+          <summary>{{ item.question }}<opsbuf-icon name="plus" [size]="18" /></summary>
           <p>{{ item.answer }}</p>
         </details>
       }
@@ -165,11 +165,11 @@
 
 <section class="final">
   <div class="page">
-    <div class="final-card" ptxReveal>
+    <div class="final-card" opsbufReveal>
       <h2>Open your first project in a minute</h2>
-      <p>Point PTX at a folder. It offers a project.json and finds every file by its suffix.</p>
+      <p>Point opsbuf at a folder. It offers a project.json and finds every file by its suffix.</p>
       <div class="cta">
-        <a class="button primary" routerLink="/" fragment="pricing">Buy PTX</a>
+        <a class="button primary" routerLink="/" fragment="pricing">Buy opsbuf</a>
         <a class="button" routerLink="/login">Sign in to your licenses</a>
       </div>
     </div>

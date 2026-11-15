@@ -1,4 +1,4 @@
-package ptx.web
+package opsbuf.web
 
 import java.nio.file.Path
 import kotlin.time.Duration
@@ -20,20 +20,20 @@ data class AppConfig(
 ) {
     data class MailConfig(
         val resendApiKey: String? = null,
-        val from: String = "PTX <no-reply@example.com>",
+        val from: String = "opsbuf <no-reply@example.com>",
     )
 
     companion object {
         fun fromEnvironment(env: Map<String, String> = System.getenv()): AppConfig = AppConfig(
-            host = env["PTX_HOST"] ?: "0.0.0.0",
-            port = env["PTX_PORT"]?.toInt() ?: 8080,
-            dataFile = Path.of(env["PTX_DATA_FILE"] ?: "data/store.json"),
-            webDir = env["PTX_WEB_DIR"]?.let(Path::of),
+            host = env["OPSBUF_HOST"] ?: "0.0.0.0",
+            port = env["OPSBUF_PORT"]?.toInt() ?: 8080,
+            dataFile = Path.of(env["OPSBUF_DATA_FILE"] ?: "data/store.json"),
+            webDir = env["OPSBUF_WEB_DIR"]?.let(Path::of),
             mail = MailConfig(
-                resendApiKey = env["PTX_RESEND_API_KEY"]?.takeIf { it.isNotBlank() },
-                from = env["PTX_MAIL_FROM"] ?: "PTX <no-reply@example.com>",
+                resendApiKey = env["OPSBUF_RESEND_API_KEY"]?.takeIf { it.isNotBlank() },
+                from = env["OPSBUF_MAIL_FROM"] ?: "opsbuf <no-reply@example.com>",
             ),
-            showDevCodes = env["PTX_DEV_CODES"] == "true",
+            showDevCodes = env["OPSBUF_DEV_CODES"] == "true",
         )
     }
 }

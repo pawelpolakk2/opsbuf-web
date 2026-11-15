@@ -6,19 +6,19 @@
     <string>pl.opsbuf.web</string>
     <key>ProgramArguments</key>
     <array>
-        <string>__HOME__/Apps/opsbuf-web/backend/bin/ptx-web-backend</string>
+        <string>__HOME__/Apps/opsbuf-web/backend/bin/opsbuf-web-backend</string>
     </array>
     <key>EnvironmentVariables</key>
     <dict>
         <key>JAVA_HOME</key>
         <string>__JAVA_HOME__</string>
-        <key>PTX_HOST</key>
+        <key>OPSBUF_HOST</key>
         <string>127.0.0.1</string>
-        <key>PTX_PORT</key>
+        <key>OPSBUF_PORT</key>
         <string>__PORT__</string>
-        <key>PTX_DATA_FILE</key>
+        <key>OPSBUF_DATA_FILE</key>
         <string>__HOME__/Apps/opsbuf-web/data/store.json</string>
-        <key>PTX_WEB_DIR</key>
+        <key>OPSBUF_WEB_DIR</key>
         <string>__HOME__/Apps/opsbuf-web/web</string>
     </dict>
     <key>WorkingDirectory</key>

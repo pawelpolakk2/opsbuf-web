@@ -4,7 +4,7 @@ import { Session } from '../core/session';
 import { Icon } from '../ui/icon';
 
 @Component({
-  selector: 'ptx-site-header',
+  selector: 'opsbuf-site-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, Icon],
   host: { '(window:scroll)': 'updateScrolled()' },
@@ -12,8 +12,8 @@ import { Icon } from '../ui/icon';
     <header [class.scrolled]="isScrolled()">
       <div class="page bar">
         <a class="brand" routerLink="/" (click)="closeMenu()">
-          <span class="logo"><ptx-icon name="toolbox" [size]="18" [strokeWidth]="2" /></span>
-          <span>PTX</span>
+          <span class="logo"><opsbuf-icon name="toolbox" [size]="18" [strokeWidth]="2" /></span>
+          <span>opsbuf</span>
           <span class="version">rust</span>
         </a>
         <nav [class.open]="isMenuOpen()">
@@ -25,19 +25,19 @@ import { Icon } from '../ui/icon';
           <span class="actions">
             @if (session.isSignedIn()) {
               <a class="button small ghost" routerLink="/account" (click)="closeMenu()">
-                <ptx-icon name="lock" [size]="15" /> Licenses
+                <opsbuf-icon name="lock" [size]="15" /> Licenses
               </a>
               <button class="button small ghost" type="button" (click)="logout()">Sign out</button>
             } @else {
               <a class="button small ghost" routerLink="/login" (click)="closeMenu()">Sign in</a>
             }
             <a class="button small primary" routerLink="/" fragment="pricing" (click)="closeMenu()">
-              Buy PTX
+              Buy opsbuf
             </a>
           </span>
         </nav>
         <button class="menu" type="button" aria-label="Menu" (click)="toggleMenu()">
-          <ptx-icon [name]="isMenuOpen() ? 'close' : 'logs'" />
+          <opsbuf-icon [name]="isMenuOpen() ? 'close' : 'logs'" />
         </button>
       </div>
     </header>

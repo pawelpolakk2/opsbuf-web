@@ -3,7 +3,7 @@ export type CodeLanguage = 'yaml' | 'http' | 'shell' | 'sql';
 const KEYWORDS: Record<CodeLanguage, RegExp> = {
   yaml: /^$/,
   http: /\b(GET|POST|PUT|PATCH|DELETE|import|from|function|return|const)\b/,
-  shell: /^(ptx|pnpm|cargo)\b/,
+  shell: /^(opsbuf|pnpm|cargo)\b/,
   sql: /\b(select|from|where|group by|order by|join|on|and|count|sum|as|limit|desc)\b/i,
 };
 

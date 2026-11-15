@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { License } from '../core/models';
-import { ApiFailure, PtxApi } from '../core/ptx-api';
+import { ApiFailure, OpsbufApi } from '../core/opsbuf-api';
 import { formatDate } from '../ui/format';
 import { Icon } from '../ui/icon';
 
 @Component({
-  selector: 'ptx-license-card',
+  selector: 'opsbuf-license-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, Icon],
   template: `
@@ -14,7 +14,7 @@ import { Icon } from '../ui/icon';
       <header>
         <div>
           <div class="title">
-            <h2>PTX {{ license().planName }}</h2>
+            <h2>opsbuf {{ license().planName }}</h2>
             <span class="chip" [class.ok]="license().status === 'ACTIVE'" [class.warn]="license().status === 'CANCELLED'">
               {{ license().status === 'ACTIVE' ? 'Active' : 'Ends ' + format(license().renewsAt) }}
             </span>
@@ -45,10 +45,10 @@ import { Icon } from '../ui/icon';
         <span class="label">License key</span>
         <code>{{ isKeyVisible() ? license().key : maskedKey() }}</code>
         <button class="icon-button" type="button" [attr.aria-label]="isKeyVisible() ? 'Hide key' : 'Show key'" (click)="toggleKey()">
-          <ptx-icon [name]="isKeyVisible() ? 'close' : 'eye'" [size]="16" />
+          <opsbuf-icon [name]="isKeyVisible() ? 'close' : 'eye'" [size]="16" />
         </button>
         <button class="button small" type="button" (click)="copyKey()">
-          <ptx-icon [name]="isCopied() ? 'check' : 'share'" [size]="15" /> {{ isCopied() ? 'Copied' : 'Copy' }}
+          <opsbuf-icon [name]="isCopied() ? 'check' : 'share'" [size]="15" /> {{ isCopied() ? 'Copied' : 'Copy' }}
         </button>
       </div>
 
@@ -84,7 +84,7 @@ import { Icon } from '../ui/icon';
           <ul>
             @for (activation of license().activations; track activation.machineId) {
               <li>
-                <ptx-icon name="terminal" [size]="16" />
+                <opsbuf-icon name="terminal" [size]="16" />
                 <span class="grow">
                   {{ activation.machineName }}
                   <small>last seen {{ format(activation.lastSeenAt) }}</small>
@@ -96,7 +96,7 @@ import { Icon } from '../ui/icon';
                 }
               </li>
             } @empty {
-              <li class="empty">Paste the key into PTX to activate a machine.</li>
+              <li class="empty">Paste the key into opsbuf to activate a machine.</li>
             }
           </ul>
         </section>
@@ -106,7 +106,7 @@ import { Icon } from '../ui/icon';
   styleUrl: './license-card.scss',
 })
 export class LicenseCard {
-  private readonly api = inject(PtxApi);
+  private readonly api = inject(OpsbufApi);
   readonly license = input.required<License>();
   readonly isHighlighted = input(false);
   readonly changed = output<License>();

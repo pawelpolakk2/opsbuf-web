@@ -5,18 +5,18 @@ export const routes: Routes = [
   { path: '', loadComponent: () => import('./home/home-page').then((it) => it.HomePage) },
   {
     path: 'login',
-    title: 'Sign in · PTX',
+    title: 'Sign in · opsbuf',
     loadComponent: () => import('./login/login-page').then((it) => it.LoginPage),
   },
   {
     path: 'buy/:planId',
-    title: 'Buy a license · PTX',
+    title: 'Buy a license · opsbuf',
     canActivate: [signedInGuard],
     loadComponent: () => import('./checkout/checkout-page').then((it) => it.CheckoutPage),
   },
   {
     path: 'account',
-    title: 'Licenses · PTX',
+    title: 'Licenses · opsbuf',
     canActivate: [signedInGuard],
     loadComponent: () => import('./account/account-page').then((it) => it.AccountPage),
   },

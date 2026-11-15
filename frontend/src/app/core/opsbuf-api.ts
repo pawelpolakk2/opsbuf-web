@@ -4,7 +4,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { ApiError, Billing, CodeSent, License, Order, Plan, SessionStart, User } from './models';
 
 @Injectable({ providedIn: 'root' })
-export class PtxApi {
+export class OpsbufApi {
   private readonly http = inject(HttpClient);
 
   listPlans(): Promise<Plan[]> {

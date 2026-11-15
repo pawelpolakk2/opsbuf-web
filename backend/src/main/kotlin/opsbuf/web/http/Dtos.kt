@@ -1,12 +1,12 @@
-package ptx.web.http
+package opsbuf.web.http
 
 import kotlinx.serialization.Serializable
-import ptx.web.licensing.Plans
-import ptx.web.store.Activation
-import ptx.web.store.Billing
-import ptx.web.store.License
-import ptx.web.store.LicenseStatus
-import ptx.web.store.User
+import opsbuf.web.licensing.Plans
+import opsbuf.web.store.Activation
+import opsbuf.web.store.Billing
+import opsbuf.web.store.License
+import opsbuf.web.store.LicenseStatus
+import opsbuf.web.store.User
 
 @Serializable
 data class EmailBody(val email: String)

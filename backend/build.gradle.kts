@@ -5,7 +5,7 @@ plugins {
     id("org.graalvm.buildtools.native") version "1.1.18"
 }
 
-group = "ptx.web"
+group = "opsbuf.web"
 version = "0.1.0"
 
 repositories {
@@ -38,7 +38,7 @@ kotlin {
 }
 
 application {
-    mainClass.set("ptx.web.MainKt")
+    mainClass.set("opsbuf.web.MainKt")
 }
 
 tasks.test {
@@ -49,8 +49,8 @@ graalvmNative {
     toolchainDetection.set(false)
     binaries {
         named("main") {
-            imageName.set("ptx-web")
-            mainClass.set("ptx.web.MainKt")
+            imageName.set("opsbuf-web")
+            mainClass.set("opsbuf.web.MainKt")
             buildArgs.addAll(
                 "--initialize-at-build-time=io.ktor,kotlin,kotlinx.coroutines,kotlinx.serialization,kotlinx.io,org.slf4j",
                 "--initialize-at-run-time=io.ktor.util.NonceKt",

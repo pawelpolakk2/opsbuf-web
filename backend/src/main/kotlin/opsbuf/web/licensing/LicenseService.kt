@@ -1,16 +1,16 @@
-package ptx.web.licensing
+package opsbuf.web.licensing
 
-import ptx.web.Secrets
-import ptx.web.store.Activation
-import ptx.web.store.Billing
-import ptx.web.store.License
-import ptx.web.store.LicenseStatus
-import ptx.web.store.Order
-import ptx.web.store.Store
-import ptx.web.store.StoreState
-import ptx.web.store.User
-import ptx.web.store.keep
-import ptx.web.store.save
+import opsbuf.web.Secrets
+import opsbuf.web.store.Activation
+import opsbuf.web.store.Billing
+import opsbuf.web.store.License
+import opsbuf.web.store.LicenseStatus
+import opsbuf.web.store.Order
+import opsbuf.web.store.Store
+import opsbuf.web.store.StoreState
+import opsbuf.web.store.User
+import opsbuf.web.store.keep
+import opsbuf.web.store.save
 import java.time.Clock
 import java.time.ZoneOffset
 
@@ -42,7 +42,7 @@ class LicenseService(
             return refuse(Refusal.INVALID, "The ${plan.name} plan takes ${plan.minSeats} to ${plan.maxSeats} seats.")
         }
         val amountCents = plan.calculatePriceCents(request.billing, request.seats)
-        val charge = Charge(user.email, amountCents, plan.currency, "PTX ${plan.name} × ${request.seats}")
+        val charge = Charge(user.email, amountCents, plan.currency, "opsbuf ${plan.name} × ${request.seats}")
         return when (val payment = payments.charge(charge)) {
             is Payment.Declined -> refuse(Refusal.CONFLICT, "The payment was declined: ${payment.reason}")
             is Payment.Paid -> LicenseOutcome.Done(storePurchase(user, plan, request, amountCents, payment.reference))

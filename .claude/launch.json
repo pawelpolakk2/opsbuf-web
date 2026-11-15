@@ -6,7 +6,7 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": [
         "-c",
-        "cd backend && JAVA_HOME=$HOME/Library/Java/JavaVirtualMachines/azul-21.0.2/Contents/Home PTX_PORT=8095 PTX_DEV_CODES=true ./gradlew run -q"
+        "cd backend && JAVA_HOME=$HOME/Library/Java/JavaVirtualMachines/azul-21.0.2/Contents/Home OPSBUF_PORT=8095 OPSBUF_DEV_CODES=true ./gradlew run -q"
       ],
       "port": 8095
     },

@@ -1,7 +1,7 @@
 {
   "reflection": [
     {
-      "type": "ptx.web.http.ActivateBody",
+      "type": "opsbuf.web.http.ActivateBody",
       "fields": [
         {
           "name": "Companion"
@@ -9,7 +9,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.ActivateBody$Companion",
+      "type": "opsbuf.web.http.ActivateBody$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.ActivationResponse",
+      "type": "opsbuf.web.http.ActivationResponse",
       "fields": [
         {
           "name": "Companion"
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.ActivationResponse$Companion",
+      "type": "opsbuf.web.http.ActivationResponse$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.CodeSentResponse",
+      "type": "opsbuf.web.http.CodeSentResponse",
       "fields": [
         {
           "name": "Companion"
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.CodeSentResponse$Companion",
+      "type": "opsbuf.web.http.CodeSentResponse$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.EmailBody",
+      "type": "opsbuf.web.http.EmailBody",
       "fields": [
         {
           "name": "Companion"
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.EmailBody$Companion",
+      "type": "opsbuf.web.http.EmailBody$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.ErrorResponse",
+      "type": "opsbuf.web.http.ErrorResponse",
       "fields": [
         {
           "name": "Companion"
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.ErrorResponse$Companion",
+      "type": "opsbuf.web.http.ErrorResponse$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.LicenseView",
+      "type": "opsbuf.web.http.LicenseView",
       "fields": [
         {
           "name": "Companion"
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.LicenseView$Companion",
+      "type": "opsbuf.web.http.LicenseView$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.MemberBody",
+      "type": "opsbuf.web.http.MemberBody",
       "fields": [
         {
           "name": "Companion"
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.MemberBody$Companion",
+      "type": "opsbuf.web.http.MemberBody$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.PurchaseBody",
+      "type": "opsbuf.web.http.PurchaseBody",
       "fields": [
         {
           "name": "Companion"
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.PurchaseBody$Companion",
+      "type": "opsbuf.web.http.PurchaseBody$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.SessionResponse",
+      "type": "opsbuf.web.http.SessionResponse",
       "fields": [
         {
           "name": "Companion"
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.SessionResponse$Companion",
+      "type": "opsbuf.web.http.SessionResponse$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.UserView",
+      "type": "opsbuf.web.http.UserView",
       "fields": [
         {
           "name": "Companion"
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.UserView$Companion",
+      "type": "opsbuf.web.http.UserView$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.VerifyBody",
+      "type": "opsbuf.web.http.VerifyBody",
       "fields": [
         {
           "name": "Companion"
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "type": "ptx.web.http.VerifyBody$Companion",
+      "type": "opsbuf.web.http.VerifyBody$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "type": "ptx.web.licensing.Plan",
+      "type": "opsbuf.web.licensing.Plan",
       "fields": [
         {
           "name": "Companion"
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "type": "ptx.web.licensing.Plan$Companion",
+      "type": "opsbuf.web.licensing.Plan$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "type": "ptx.web.mail.ResendMailer$ResendEmail",
+      "type": "opsbuf.web.mail.ResendMailer$ResendEmail",
       "fields": [
         {
           "name": "Companion"
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "type": "ptx.web.mail.ResendMailer$ResendEmail$Companion",
+      "type": "opsbuf.web.mail.ResendMailer$ResendEmail$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Activation",
+      "type": "opsbuf.web.store.Activation",
       "fields": [
         {
           "name": "Companion"
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Activation$Companion",
+      "type": "opsbuf.web.store.Activation$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Billing",
+      "type": "opsbuf.web.store.Billing",
       "fields": [
         {
           "name": "Companion"
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Billing$Companion",
+      "type": "opsbuf.web.store.Billing$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.License",
+      "type": "opsbuf.web.store.License",
       "fields": [
         {
           "name": "Companion"
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.License$Companion",
+      "type": "opsbuf.web.store.License$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.LicenseStatus",
+      "type": "opsbuf.web.store.LicenseStatus",
       "fields": [
         {
           "name": "Companion"
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.LicenseStatus$Companion",
+      "type": "opsbuf.web.store.LicenseStatus$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.LoginCode",
+      "type": "opsbuf.web.store.LoginCode",
       "fields": [
         {
           "name": "Companion"
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.LoginCode$Companion",
+      "type": "opsbuf.web.store.LoginCode$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Order",
+      "type": "opsbuf.web.store.Order",
       "fields": [
         {
           "name": "Companion"
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Order$Companion",
+      "type": "opsbuf.web.store.Order$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Session",
+      "type": "opsbuf.web.store.Session",
       "fields": [
         {
           "name": "Companion"
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.Session$Companion",
+      "type": "opsbuf.web.store.Session$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.StoreState",
+      "type": "opsbuf.web.store.StoreState",
       "fields": [
         {
           "name": "Companion"
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.StoreState$Companion",
+      "type": "opsbuf.web.store.StoreState$Companion",
       "methods": [
         {
           "name": "serializer",
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.User",
+      "type": "opsbuf.web.store.User",
       "fields": [
         {
           "name": "Companion"
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "type": "ptx.web.store.User$Companion",
+      "type": "opsbuf.web.store.User$Companion",
       "methods": [
         {
           "name": "serializer",

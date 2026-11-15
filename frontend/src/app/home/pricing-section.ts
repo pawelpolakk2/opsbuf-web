@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, inject, resource, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Billing, Plan } from '../core/models';
-import { PtxApi } from '../core/ptx-api';
+import { OpsbufApi } from '../core/opsbuf-api';
 import { formatPrice } from '../ui/format';
 import { Icon } from '../ui/icon';
 import { Reveal } from '../ui/reveal';
 
 @Component({
-  selector: 'ptx-pricing-section',
+  selector: 'opsbuf-pricing-section',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, Icon, Reveal],
   template: `
     <section class="section">
       <div class="page">
-        <div class="head" ptxReveal>
+        <div class="head" opsbufReveal>
           <span class="eyebrow">Pricing</span>
           <h2 class="section-title">One license, every module</h2>
           <p class="section-lead">No module is extra. Pay per seat, cancel any time.</p>
@@ -31,7 +31,7 @@ import { Reveal } from '../ui/reveal';
         }
         <div class="plans">
           @for (plan of plans.value() ?? []; track plan.id) {
-            <article class="plan card" [class.featured]="plan.id === 'team'" ptxReveal>
+            <article class="plan card" [class.featured]="plan.id === 'team'" opsbufReveal>
               @if (plan.id === 'team') {
                 <span class="badge">Most popular</span>
               }
@@ -62,22 +62,22 @@ import { Reveal } from '../ui/reveal';
               </a>
               <ul>
                 @for (feature of plan.features; track feature) {
-                  <li><ptx-icon name="check" [size]="15" [strokeWidth]="2.2" />{{ feature }}</li>
+                  <li><opsbuf-icon name="check" [size]="15" [strokeWidth]="2.2" />{{ feature }}</li>
                 }
               </ul>
             </article>
           }
-          <article class="plan card" ptxReveal>
+          <article class="plan card" opsbufReveal>
             <h3>Enterprise</h3>
             <p class="tagline">For companies with their own rules.</p>
             <div class="price"><strong>Custom</strong></div>
             <p class="billed">From 50 seats, billed yearly</p>
             <a class="button" href="mailto:sales@example.com">Talk to us</a>
             <ul>
-              <li><ptx-icon name="check" [size]="15" [strokeWidth]="2.2" />Everything in Team</li>
-              <li><ptx-icon name="check" [size]="15" [strokeWidth]="2.2" />Invoice and bank transfer</li>
-              <li><ptx-icon name="check" [size]="15" [strokeWidth]="2.2" />Offline license files</li>
-              <li><ptx-icon name="check" [size]="15" [strokeWidth]="2.2" />Help with your first projects</li>
+              <li><opsbuf-icon name="check" [size]="15" [strokeWidth]="2.2" />Everything in Team</li>
+              <li><opsbuf-icon name="check" [size]="15" [strokeWidth]="2.2" />Invoice and bank transfer</li>
+              <li><opsbuf-icon name="check" [size]="15" [strokeWidth]="2.2" />Offline license files</li>
+              <li><opsbuf-icon name="check" [size]="15" [strokeWidth]="2.2" />Help with your first projects</li>
             </ul>
           </article>
         </div>
@@ -87,7 +87,7 @@ import { Reveal } from '../ui/reveal';
   styleUrl: './pricing-section.scss',
 })
 export class PricingSection {
-  private readonly api = inject(PtxApi);
+  private readonly api = inject(OpsbufApi);
   protected readonly billing = signal<Billing>('YEARLY');
   protected readonly teamSeats = signal(5);
   protected readonly plans = resource({ loader: () => this.api.listPlans() });

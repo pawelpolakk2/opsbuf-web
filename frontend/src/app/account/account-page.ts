@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject, resource } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { License, Order } from '../core/models';
-import { PtxApi } from '../core/ptx-api';
+import { OpsbufApi } from '../core/opsbuf-api';
 import { Session } from '../core/session';
 import { formatDate, formatPrice } from '../ui/format';
 import { Icon } from '../ui/icon';
 import { LicenseCard } from './license-card';
 
-const DOWNLOAD_URL = 'https://github.com/pawelpolakk2/ptx-rust/releases/latest';
+const DOWNLOAD_URL = 'https://github.com/pawelpolakk2/opsbuf-app/releases/latest';
 
 @Component({
-  selector: 'ptx-account-page',
+  selector: 'opsbuf-account-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, Icon, LicenseCard],
   template: `
@@ -22,13 +22,13 @@ const DOWNLOAD_URL = 'https://github.com/pawelpolakk2/ptx-rust/releases/latest';
           <p class="lead">Signed in as {{ session.user()?.email }}</p>
         </div>
         <a class="button" [href]="downloadUrl" target="_blank" rel="noopener">
-          <ptx-icon name="import" [size]="16" /> Download for macOS
+          <opsbuf-icon name="import" [size]="16" /> Download for macOS
         </a>
       </header>
 
       @if (boughtId) {
         <p class="notice ok">
-          Thank you. Your license is ready: copy the key below and paste it into PTX.
+          Thank you. Your license is ready: copy the key below and paste it into opsbuf.
         </p>
       }
 
@@ -38,11 +38,11 @@ const DOWNLOAD_URL = 'https://github.com/pawelpolakk2/ptx-rust/releases/latest';
 
       <div class="licenses">
         @for (license of licenses.value() ?? []; track license.id) {
-          <ptx-license-card [license]="license" [isHighlighted]="license.id === boughtId" (changed)="replaceLicense($event)" />
+          <opsbuf-license-card [license]="license" [isHighlighted]="license.id === boughtId" (changed)="replaceLicense($event)" />
         } @empty {
           @if (!licenses.isLoading()) {
             <div class="card empty">
-              <span class="empty-icon"><ptx-icon name="toolbox" [size]="26" /></span>
+              <span class="empty-icon"><opsbuf-icon name="toolbox" [size]="26" /></span>
               <h2>No license yet</h2>
               <p>Pick a plan and your key shows up here right after the payment.</p>
               <a class="button primary" routerLink="/" fragment="pricing">See the plans</a>
@@ -80,7 +80,7 @@ const DOWNLOAD_URL = 'https://github.com/pawelpolakk2/ptx-rust/releases/latest';
   styleUrl: './account-page.scss',
 })
 export class AccountPage {
-  private readonly api = inject(PtxApi);
+  private readonly api = inject(OpsbufApi);
   private readonly route = inject(ActivatedRoute);
   protected readonly session = inject(Session);
   protected readonly downloadUrl = DOWNLOAD_URL;

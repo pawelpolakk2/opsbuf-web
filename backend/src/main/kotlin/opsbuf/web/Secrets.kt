@@ -1,4 +1,4 @@
-package ptx.web
+package opsbuf.web
 
 import java.security.MessageDigest
 import java.security.SecureRandom
@@ -21,7 +21,7 @@ object Secrets {
     fun createLoginCode(): String = (0 until 6).map { random.nextInt(10) }.joinToString("")
 
     fun createLicenseKey(): String =
-        (0 until 4).joinToString("-", prefix = "PTX-") {
+        (0 until 4).joinToString("-", prefix = "OPSBUF-") {
             (0 until 5).map { KEY_ALPHABET[random.nextInt(KEY_ALPHABET.length)] }.joinToString("")
         }
 

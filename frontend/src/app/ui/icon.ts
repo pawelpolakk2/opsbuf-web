@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { FILLED_ICONS, ICON_PATHS, IconName } from './icons';
 
 @Component({
-  selector: 'ptx-icon',
+  selector: 'opsbuf-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <svg

@@ -15,7 +15,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "ptx",
+      "prefix": "opsbuf",
       "architect": {
         "build": {
           "builder": "@angular/build:application",

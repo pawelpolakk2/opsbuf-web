@@ -1,4 +1,4 @@
-// Icon paths copied from the PTX desktop app (ptx-rust apps/desktop/src/app/ui/icons.ts), so the site matches the app.
+// Icon paths copied from the opsbuf desktop app (opsbuf-app apps/desktop/src/app/ui/icons.ts), so the site matches the app.
 export const ICON_PATHS = {
   toolbox: 'M3 9h18v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM8 9V6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M3 13h18M10 13v2h4v-2',
   comment: 'M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',

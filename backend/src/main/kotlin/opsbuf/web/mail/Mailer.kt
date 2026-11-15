@@ -1,4 +1,4 @@
-package ptx.web.mail
+package opsbuf.web.mail
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.bearerAuth

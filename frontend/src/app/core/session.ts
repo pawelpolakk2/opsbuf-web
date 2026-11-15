@@ -3,13 +3,13 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { User } from './models';
-import { PtxApi } from './ptx-api';
+import { OpsbufApi } from './opsbuf-api';
 
-const TOKEN_KEY = 'ptx.session';
+const TOKEN_KEY = 'opsbuf.session';
 
 @Injectable({ providedIn: 'root' })
 export class Session {
-  private readonly api = inject(PtxApi);
+  private readonly api = inject(OpsbufApi);
   private readonly tokenSignal = signal<string | undefined>(readStoredToken());
   private readonly userSignal = signal<User | undefined>(undefined);
 

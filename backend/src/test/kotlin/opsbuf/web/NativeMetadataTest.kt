@@ -1,11 +1,11 @@
-package ptx.web
+package opsbuf.web
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import ptx.web.store.StoreState
+import opsbuf.web.store.StoreState
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.io.path.extension
@@ -45,6 +45,6 @@ class NativeMetadataTest {
     }
 
     private companion object {
-        const val METADATA = "/META-INF/native-image/ptx.web/ptx-web/reachability-metadata.json"
+        const val METADATA = "/META-INF/native-image/opsbuf.web/opsbuf-web/reachability-metadata.json"
     }
 }

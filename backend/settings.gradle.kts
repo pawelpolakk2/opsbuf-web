@@ -1,1 +1,1 @@
-rootProject.name = "ptx-web-backend"
+rootProject.name = "opsbuf-web-backend"

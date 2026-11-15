@@ -16,7 +16,7 @@ const SHORTCUTS = [
 ];
 
 @Component({
-  selector: 'ptx-home-page',
+  selector: 'opsbuf-home-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, Icon, Reveal, WorkbenchPreview, PricingSection],
   templateUrl: './home-page.html',

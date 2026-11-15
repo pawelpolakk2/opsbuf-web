@@ -198,8 +198,8 @@ h1 {
   line-height: 1.45;
 }
 
-.module li ptx-icon,
-.step li ptx-icon {
+.module li opsbuf-icon,
+.step li opsbuf-icon {
   margin-top: 2px;
   color: var(--module, var(--accent));
 }
@@ -380,12 +380,12 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-summary ptx-icon {
+summary opsbuf-icon {
   color: var(--fg-dim);
   transition: transform 0.2s;
 }
 
-details[open] summary ptx-icon {
+details[open] summary opsbuf-icon {
   transform: rotate(45deg);
 }
 

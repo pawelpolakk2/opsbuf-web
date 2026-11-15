@@ -1,16 +1,16 @@
-package ptx.web.auth
+package opsbuf.web.auth
 
-import ptx.web.AppConfig
-import ptx.web.Secrets
-import ptx.web.mail.MailMessage
-import ptx.web.mail.Mailer
-import ptx.web.store.LoginCode
-import ptx.web.store.Session
-import ptx.web.store.Store
-import ptx.web.store.StoreState
-import ptx.web.store.User
-import ptx.web.store.keep
-import ptx.web.store.save
+import opsbuf.web.AppConfig
+import opsbuf.web.Secrets
+import opsbuf.web.mail.MailMessage
+import opsbuf.web.mail.Mailer
+import opsbuf.web.store.LoginCode
+import opsbuf.web.store.Session
+import opsbuf.web.store.Store
+import opsbuf.web.store.StoreState
+import opsbuf.web.store.User
+import opsbuf.web.store.keep
+import opsbuf.web.store.save
 import java.time.Clock
 
 sealed interface CodeRequest {
@@ -106,9 +106,9 @@ class AuthService(
 
     private fun createCodeMessage(email: String, code: String) = MailMessage(
         to = email,
-        subject = "Your PTX sign-in code: $code",
+        subject = "Your opsbuf sign-in code: $code",
         text = """
-            |Your PTX sign-in code is $code
+            |Your opsbuf sign-in code is $code
             |
             |It is valid for ${config.codeTtl.inWholeMinutes} minutes. If you did not ask for it, ignore this email.
         """.trimMargin(),

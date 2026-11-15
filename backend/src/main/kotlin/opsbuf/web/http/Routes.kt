@@ -1,4 +1,4 @@
-package ptx.web.http
+package opsbuf.web.http
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
@@ -11,15 +11,15 @@ import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.route
-import ptx.web.auth.AuthService
-import ptx.web.auth.CodeRequest
-import ptx.web.auth.Verification
-import ptx.web.licensing.LicenseOutcome
-import ptx.web.licensing.LicenseService
-import ptx.web.licensing.Plans
-import ptx.web.licensing.PurchaseRequest
-import ptx.web.licensing.Refusal
-import ptx.web.store.User
+import opsbuf.web.auth.AuthService
+import opsbuf.web.auth.CodeRequest
+import opsbuf.web.auth.Verification
+import opsbuf.web.licensing.LicenseOutcome
+import opsbuf.web.licensing.LicenseService
+import opsbuf.web.licensing.Plans
+import opsbuf.web.licensing.PurchaseRequest
+import opsbuf.web.licensing.Refusal
+import opsbuf.web.store.User
 
 const val SESSION_AUTH = "session"
 

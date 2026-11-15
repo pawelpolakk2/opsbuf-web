@@ -4,15 +4,15 @@ import { SiteFooter } from './shell/site-footer';
 import { SiteHeader } from './shell/site-header';
 
 @Component({
-  selector: 'ptx-root',
+  selector: 'opsbuf-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, SiteHeader, SiteFooter],
   template: `
-    <ptx-site-header />
+    <opsbuf-site-header />
     <main>
       <router-outlet />
     </main>
-    <ptx-site-footer />
+    <opsbuf-site-footer />
   `,
   styles: `
     :host {

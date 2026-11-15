@@ -1,7 +1,7 @@
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 
 @Directive({
-  selector: '[ptxReveal]',
+  selector: '[opsbufReveal]',
   host: { class: 'reveal' },
 })
 export class Reveal {

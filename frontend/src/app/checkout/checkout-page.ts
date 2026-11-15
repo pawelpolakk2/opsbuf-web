@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, computed, inject, resource, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Billing, Plan } from '../core/models';
-import { ApiFailure, PtxApi } from '../core/ptx-api';
+import { ApiFailure, OpsbufApi } from '../core/opsbuf-api';
 import { Session } from '../core/session';
 import { formatPrice } from '../ui/format';
 import { Icon } from '../ui/icon';
 
 @Component({
-  selector: 'ptx-checkout-page',
+  selector: 'opsbuf-checkout-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, Icon],
   template: `
     <div class="page wrap">
-      <a class="back" routerLink="/" fragment="pricing"><ptx-icon name="undo" [size]="15" /> Back to pricing</a>
+      <a class="back" routerLink="/" fragment="pricing"><opsbuf-icon name="undo" [size]="15" /> Back to pricing</a>
       @if (plan(); as plan) {
         <div class="layout">
           <section class="card form">
-            <h1>Buy PTX {{ plan.name }}</h1>
+            <h1>Buy opsbuf {{ plan.name }}</h1>
             <p class="lead">{{ plan.tagline }}</p>
 
             <h2>Billing</h2>
@@ -44,7 +44,7 @@ import { Icon } from '../ui/icon';
             }
 
             <h2>Account</h2>
-            <p class="account"><ptx-icon name="check" [size]="15" /> {{ session.user()?.email }}</p>
+            <p class="account"><opsbuf-icon name="check" [size]="15" /> {{ session.user()?.email }}</p>
           </section>
 
           <aside class="card summary">
@@ -63,7 +63,7 @@ import { Icon } from '../ui/icon';
               <p class="notice error">{{ error() }}</p>
             }
             <button class="button primary" type="button" [disabled]="isBusy()" (click)="pay(plan)">
-              <ptx-icon name="lock" [size]="15" /> {{ isBusy() ? 'Paying…' : 'Pay ' + total() }}
+              <opsbuf-icon name="lock" [size]="15" /> {{ isBusy() ? 'Paying…' : 'Pay ' + total() }}
             </button>
             <p class="demo">Demo checkout: no card is charged. The payment gateway plugs into the backend.</p>
           </aside>
@@ -78,7 +78,7 @@ import { Icon } from '../ui/icon';
   styleUrl: './checkout-page.scss',
 })
 export class CheckoutPage {
-  private readonly api = inject(PtxApi);
+  private readonly api = inject(OpsbufApi);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   protected readonly session = inject(Session);
