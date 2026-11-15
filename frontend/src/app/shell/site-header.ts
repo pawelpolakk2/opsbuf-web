@@ -55,7 +55,7 @@ import { Logo } from '../ui/logo';
     }
 
     header.scrolled {
-      background: rgba(28, 27, 26, 0.82);
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
       backdrop-filter: blur(14px) saturate(1.4);
       border-bottom-color: var(--border-soft);
     }

@@ -15,11 +15,6 @@ export interface Spotlight extends ModuleCard {
   sample: CodeSample;
 }
 
-export interface HeroSpec {
-  label: string;
-  value: string;
-}
-
 export interface Principle {
   icon: IconName;
   title: string;
@@ -50,13 +45,6 @@ export interface Question {
   question: string;
   answer: string;
 }
-
-export const HERO_SPECS: HeroSpec[] = [
-  { label: 'Modules', value: 'Logs, Kubernetes, Redis, Scripts and six more' },
-  { label: 'Projects', value: 'Plain YAML, SQL and .http files in your git repo' },
-  { label: 'Environments', value: 'DEV, TEST and PROD on ⌘1 to ⌘9' },
-  { label: 'Platform', value: 'macOS on Apple Silicon, with a Rust core' },
-];
 
 export const PRINCIPLES: Principle[] = [
   {

@@ -1,7 +1,52 @@
 :root {
+  color-scheme: light;
+  --bg: #f5f3ee;
+  --bg-raised: #faf9f5;
+  --panel: #ffffff;
+  --rail: #eeebe4;
+  --control: #ffffff;
+  --chip: #e9e5dc;
+  --hover: #f0ede6;
+  --border: #d6d1c5;
+  --border-strong: #bdb7a8;
+  --border-soft: #e4e0d6;
+  --fg: #1c1b1a;
+  --fg-muted: #45423c;
+  --fg-dim: #66625a;
+  --fg-faint: #7b766d;
+  --accent: #4a47c0;
+  --accent-strong: #36339f;
+  --accent-fill: #5c60d6;
+  --accent-rgb: 92 96 214;
+  --on-accent: #ffffff;
+  --link: #4a47c0;
+  --ok: #1d7a4c;
+  --warn: #8a6a0c;
+  --error: #c0392b;
+  --module-project: #66625a;
+  --module-git: #1c7fa3;
+  --module-data: #2e6bd1;
+  --module-logs: #c2562c;
+  --module-redis: #b04a4a;
+  --module-http: #7446cf;
+  --module-k8s: #128577;
+  --module-scripts: #a8730d;
+  --module-prompts: #a3741a;
+  --module-access: #b53f7c;
+  --module-builds: #567f17;
+  --radius: 14px;
+  --radius-small: 8px;
+  --page: 1180px;
+  --sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --app-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --app-mono: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+}
+
+// the app is dark: its replica in the hero and the code samples keep the app's own palette on the light page
+.app-theme {
   color-scheme: dark;
   --bg: #1c1b1a;
-  --bg-raised: #232220;
   --panel: #1f1e1d;
   --rail: #1a1918;
   --control: #2b2a27;
@@ -13,12 +58,8 @@
   --fg-muted: #b4b1a6;
   --fg-dim: #9b988d;
   --fg-faint: #6f6d65;
-  --accent: #8c90f8;
-  --accent-strong: #b9bbff;
-  --accent-fill: #5c60d6;
-  --accent-rgb: 103 107 224;
-  --on-accent: #ffffff;
-  --link: #a5a8fb;
+  --link: #e59a7b;
+  --accent: #d97757;
   --app-accent: #d97757;
   --ok: #7fd4a3;
   --warn: #e0c46c;
@@ -48,13 +89,7 @@
   --env-dev: #7fd4a3;
   --env-test: #e0c46c;
   --env-prod: #ef7b6b;
-  --radius: 14px;
-  --radius-small: 8px;
-  --page: 1180px;
-  --sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  --app-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --app-mono: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  color: var(--fg);
 }
 
 *,
@@ -172,7 +207,7 @@ kbd {
 
 .button:hover {
   background: var(--hover);
-  border-color: #46443f;
+  border-color: var(--border-strong);
   color: var(--fg);
 }
 
@@ -192,8 +227,8 @@ kbd {
 }
 
 .button.primary:hover {
-  background: #ffffff;
-  border-color: #ffffff;
+  background: color-mix(in srgb, var(--fg) 84%, var(--bg));
+  border-color: transparent;
   color: var(--bg);
 }
 
@@ -213,7 +248,7 @@ kbd {
 }
 
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 60%), var(--panel);
+  background: var(--panel);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
 }
@@ -234,7 +269,7 @@ kbd {
   padding: 0 14px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: var(--rail);
+  background: var(--panel);
   color: var(--fg);
   font: 400 15px var(--sans);
   outline: none;
@@ -258,15 +293,15 @@ kbd {
 }
 
 .notice.error {
-  border-color: rgba(239, 123, 107, 0.4);
-  background: rgba(239, 123, 107, 0.08);
-  color: #f5b0a5;
+  border-color: color-mix(in srgb, var(--error) 40%, transparent);
+  background: color-mix(in srgb, var(--error) 7%, transparent);
+  color: var(--error);
 }
 
 .notice.ok {
-  border-color: rgba(127, 212, 163, 0.35);
-  background: rgba(127, 212, 163, 0.07);
-  color: #b5e8cb;
+  border-color: color-mix(in srgb, var(--ok) 40%, transparent);
+  background: color-mix(in srgb, var(--ok) 7%, transparent);
+  color: var(--ok);
 }
 
 .chip {

@@ -6,8 +6,8 @@
 }
 
 .card.highlighted {
-  border-color: rgba(127, 212, 163, 0.45);
-  box-shadow: 0 0 0 4px rgba(127, 212, 163, 0.08);
+  border-color: color-mix(in srgb, var(--ok) 55%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 10%, transparent);
 }
 
 header {
@@ -30,12 +30,12 @@ h2 {
 }
 
 .chip.ok {
-  background: rgba(127, 212, 163, 0.12);
+  background: color-mix(in srgb, var(--ok) 12%, transparent);
   color: var(--ok);
 }
 
 .chip.warn {
-  background: rgba(224, 196, 108, 0.12);
+  background: color-mix(in srgb, var(--warn) 14%, transparent);
   color: var(--warn);
 }
 
