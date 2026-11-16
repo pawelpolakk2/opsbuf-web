@@ -113,6 +113,7 @@
   --tok-string: #2f7d32;
   --tok-keyword: #7446cf;
   --tok-number: #a8650d;
+  --tok-call: #2a6cc4;
   --tint-logs: #fbe8df;
   --tint-k8s: #dcf2ee;
   --tint-http: #ebe3fb;
@@ -159,6 +160,7 @@
   --tok-string: #a5d6a7;
   --tok-keyword: #c3a6f0;
   --tok-number: #f0b85a;
+  --tok-call: #8ab4f8;
   --tint-logs: #3d2c25;
   --tint-k8s: #1f3330;
   --tint-http: #2f2a3a;
@@ -440,6 +442,14 @@ kbd {
 
 .tok-number {
   color: var(--tok-number);
+}
+
+.tok-type {
+  color: var(--code-identifier);
+}
+
+.tok-call {
+  color: var(--tok-call);
 }
 
 .tok-var {
