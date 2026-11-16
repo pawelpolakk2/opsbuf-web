@@ -66,7 +66,7 @@
         @for (tab of scenes; track tab.id; let index = $index) {
           <button
             type="button"
-            [class.active]="tab.id === scene().id"
+            [class.active]="tab.id === scene().id && !openedFile()"
             [style.--color]="requireModule(tab.moduleId).color"
             (click)="selectScene(index)"
           >
@@ -74,16 +74,24 @@
             <span>{{ tab.file }}</span>
           </button>
         }
-        <span class="modes">
-          @for (mode of scene().modes; track mode) {
-            <span [class.active]="mode === scene().activeMode">{{ mode }}</span>
-          }
-        </span>
+        @if (openedFile(); as file) {
+          <span class="file-tab">
+            <opsbuf-icon name="file" [size]="13" />
+            <span>{{ file.name }}</span>
+            <em>{{ file.repository }}</em>
+          </span>
+        } @else {
+          <span class="modes">
+            @for (mode of scene().modes; track mode) {
+              <span [class.active]="mode === scene().activeMode">{{ mode }}</span>
+            }
+          </span>
+        }
       </div>
       <div class="view">
         @switch (scene().id) {
           @case ('logs') {
-            <opsbuf-logs-scene />
+            <opsbuf-logs-scene (fileOpened)="showSourceFile()" />
           }
           @case ('k8s') {
             <opsbuf-cluster-scene />
@@ -102,8 +110,13 @@
     <span class="env"><i></i>{{ environment().label }}</span>
     <span class="branch">⎇ incident/checkout-timeouts ↑2</span>
     <span class="wide">40 files · 10 modules</span>
-    <span class="wide path">{{ scene().folder }}/{{ scene().file }} · kind {{ scene().kind }}</span>
-    <span class="valid">✓ valid</span>
+    @if (openedFile(); as file) {
+      <span class="wide path">{{ file.repository }} · {{ file.path }}:{{ file.line }}</span>
+      <span class="valid">other repository · read-only</span>
+    } @else {
+      <span class="wide path">{{ scene().folder }}/{{ scene().file }} · kind {{ scene().kind }}</span>
+      <span class="valid">✓ valid</span>
+    }
     <span class="cli">$ cli</span>
   </footer>
 </div>
@@ -115,6 +128,7 @@
       [class.active]="chapter.id === scene().id"
       [attr.aria-selected]="chapter.id === scene().id"
       [style.--color]="requireModule(chapter.moduleId).color"
+      [style.--scene-time]="chapter.seconds + 's'"
       (click)="selectScene(index)"
     >
       <span class="progress"><i (animationend)="showNextScene()"></i></span>

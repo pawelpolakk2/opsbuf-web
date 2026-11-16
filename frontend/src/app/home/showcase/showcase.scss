@@ -1,5 +1,4 @@
 :host {
-  --scene-time: 9s;
   display: block;
   text-align: left;
 }
@@ -340,6 +339,41 @@ button {
 
 .tabs button.active opsbuf-icon {
   opacity: 1;
+}
+
+.file-tab {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px 0 10px;
+  border-right: 1px solid var(--border);
+  background: var(--app-bg);
+  box-shadow: inset 0 2px 0 var(--app-accent);
+  font-size: 12px;
+  white-space: nowrap;
+  animation: tab-in 0.3s ease both;
+}
+
+.file-tab opsbuf-icon {
+  flex: none;
+  color: var(--app-accent);
+}
+
+.file-tab em {
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: var(--chip);
+  color: var(--fg-dim);
+  font-size: 10.5px;
+  font-style: normal;
+}
+
+@keyframes tab-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
 }
 
 .modes {

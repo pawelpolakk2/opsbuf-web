@@ -6,6 +6,7 @@ import {
   DestroyRef,
   ElementRef,
   inject,
+  linkedSignal,
   signal,
 } from '@angular/core';
 import { Icon } from '../../ui/icon';
@@ -14,7 +15,7 @@ import { ClusterScene } from './cluster-scene';
 import { KeysScene } from './keys-scene';
 import { LogsScene } from './logs-scene';
 import { ScriptScene } from './script-scene';
-import { ENVIRONMENTS, EnvironmentKey, RAIL_MODULES, RailModule, SCENES } from './showcase-content';
+import { ENVIRONMENTS, EnvironmentKey, RAIL_MODULES, RailModule, SCENES, SOURCE_FILE, SourceFile } from './showcase-content';
 
 /** The hero animation: the opsbuf window playing one incident through Logs, Kubernetes, Redis and Scripts. */
 @Component({
@@ -45,6 +46,11 @@ export class Showcase {
   );
   protected readonly activeModule = computed(() => this.requireModule(this.scene().moduleId));
   protected readonly isPaused = computed(() => this.isHovered() || !this.isOnScreen());
+  /** The file Claude opened in the current scene; a new scene starts without it. */
+  protected readonly openedFile = linkedSignal<number, SourceFile | null>({
+    source: this.sceneIndex,
+    computation: () => null,
+  });
 
   constructor() {
     const element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
@@ -67,6 +73,10 @@ export class Showcase {
   protected selectModule(moduleId: string): void {
     const index = SCENES.findIndex((it) => it.moduleId === moduleId);
     if (index >= 0) this.sceneIndex.set(index);
+  }
+
+  protected showSourceFile(): void {
+    this.openedFile.set(SOURCE_FILE);
   }
 
   protected selectEnvironment(key: EnvironmentKey): void {

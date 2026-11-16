@@ -28,7 +28,23 @@ export interface Scene {
   action: string;
   modes: string[];
   activeMode: string;
+  seconds: number;
 }
+
+/** A file of another repository that Claude opens from a comment. */
+export interface SourceFile {
+  repository: string;
+  path: string;
+  name: string;
+  line: number;
+}
+
+export const SOURCE_FILE: SourceFile = {
+  repository: 'acme/checkout-api',
+  path: 'src/billing-client.ts',
+  name: 'billing-client.ts',
+  line: 90,
+};
 
 export const ENVIRONMENTS: ShowcaseEnvironment[] = [
   { key: 'dev', label: 'DEV', color: 'var(--env-dev)' },
@@ -56,7 +72,7 @@ export const SCENES: Scene[] = [
   {
     id: 'logs',
     step: '01',
-    caption: 'Find the error',
+    caption: 'Find the error, ask why',
     moduleId: 'logs',
     folder: 'logs',
     file: 'checkout-api.logs.yaml',
@@ -65,6 +81,7 @@ export const SCENES: Scene[] = [
     action: 'Update query',
     modes: VIEW_MODES,
     activeMode: 'View',
+    seconds: 17,
   },
   {
     id: 'k8s',
@@ -78,6 +95,7 @@ export const SCENES: Scene[] = [
     action: 'Refresh',
     modes: VIEW_MODES,
     activeMode: 'View',
+    seconds: 9,
   },
   {
     id: 'redis',
@@ -91,6 +109,7 @@ export const SCENES: Scene[] = [
     action: 'Update',
     modes: VIEW_MODES,
     activeMode: 'View',
+    seconds: 9,
   },
   {
     id: 'scripts',
@@ -104,5 +123,6 @@ export const SCENES: Scene[] = [
     action: 'Run script',
     modes: ['File', 'Split', 'Form', 'Runs'],
     activeMode: 'Form',
+    seconds: 9,
   },
 ];

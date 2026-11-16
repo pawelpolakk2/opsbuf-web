@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { CountUp } from '../../ui/count-up';
 import { Icon } from '../../ui/icon';
+import { ClaudeComment } from './claude-comment';
+import { SourceFileView } from './source-file';
 
 interface HistogramBar {
   height: number;
@@ -32,15 +34,21 @@ const ROWS: LogRow[] = [
   { time: '14:08:41.560', tenant: 'Polar Outfitters', requestId: 'req_e04d11', message: 'upstream timeout: billing-api (5000 ms)', durationMs: 5002 },
 ];
 
-const STACK_FRAMES = [
-  'BillingClient.post (src/billing-client.ts:88:13)',
-  'CheckoutService.capture (src/checkout-service.ts:142:22)',
+interface StackFrame {
+  call: string;
+  file: string;
+  position: string;
+}
+
+const STACK_FRAMES: StackFrame[] = [
+  { call: 'BillingClient.post', file: 'src/billing-client.ts', position: ':90:13' },
+  { call: 'CheckoutService.capture', file: 'src/checkout-service.ts', position: ':142:22' },
 ];
 
 @Component({
   selector: 'opsbuf-logs-scene',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Icon, CountUp],
+  imports: [Icon, CountUp, ClaudeComment, SourceFileView],
   template: `
     <div class="views">
       <span class="view-chip">all</span>
@@ -53,7 +61,7 @@ const STACK_FRAMES = [
       <div class="search-line">
         <span class="search">
           <opsbuf-icon name="magnifier" [size]="14" />
-          <span class="typed" style="--chars: 15">level = 'ERROR'</span>
+          <span class="typed" style="--chars: 15"><span class="tok-key">level</span> = <span class="tok-string">'ERROR'</span></span>
           <span class="caret"></span>
         </span>
         <span class="ranges"><span>15 m</span><span class="active">1 h</span><span>24 h</span></span>
@@ -87,22 +95,26 @@ const STACK_FRAMES = [
         <span class="duration">5004</span>
       </div>
       <div class="fields">
-        <div><span>level</span><span class="level">ERROR</span></div>
-        <div><span>container_name</span><span class="container">checkout-api</span></div>
         <div>
           <span>tenant_id</span>
           <span>7f3a9c12 <b class="lookup">Acme Retail</b></span>
         </div>
-        <div>
+        <div class="picked"><span>container_name</span><span class="container">checkout-api</span></div>
+        <div class="picked">
           <span>message</span>
           <span class="trace">
-            <span>TimeoutError: upstream timeout: billing-api (5000 ms)</span>
-            @for (frame of stackFrames; track frame) {
-              <span class="frame">at {{ frame }}</span>
+            <span><b class="error-type">TimeoutError</b>: upstream timeout: billing-api (<span class="tok-number">5000</span> ms)</span>
+            @for (frame of stackFrames; track frame.call) {
+              <span class="frame">
+                <span class="tok-keyword">at </span><span class="tok-call">{{ frame.call }}</span> (<span class="frame-file">{{ frame.file }}</span
+                ><span class="tok-number">{{ frame.position }}</span
+                >)
+              </span>
             }
           </span>
         </div>
       </div>
+      <div class="comment-anchor"><opsbuf-claude-comment /></div>
       @for (row of rows; track row.requestId) {
         <div class="row" [style.--i]="$index + 1">
           <span class="toggle">▸</span><span>{{ row.time }}</span><span class="level">ERROR</span>
@@ -112,10 +124,13 @@ const STACK_FRAMES = [
         </div>
       }
     </div>
+    <opsbuf-source-file (opened)="fileOpened.emit()" />
   `,
   styleUrl: './logs-scene.scss',
 })
 export class LogsScene {
+  readonly fileOpened = output<void>();
+
   protected readonly bars = BARS;
   protected readonly rows = ROWS;
   protected readonly stackFrames = STACK_FRAMES;

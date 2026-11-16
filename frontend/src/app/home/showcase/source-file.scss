@@ -1,0 +1,253 @@
+@use 'scene';
+
+:host {
+  --answer-at: 11.9s;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: var(--app-bg);
+  animation: open 0.4s ease 10.4s both;
+}
+
+.file-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.repository {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  color: var(--fg-muted);
+  font-size: 11.5px;
+}
+
+.path {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--fg);
+  font-size: 11.5px;
+}
+
+.opened-by {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--fg-dim);
+  font-size: 11.5px;
+}
+
+.opened-by opsbuf-icon {
+  color: var(--app-accent);
+}
+
+.lines {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 0;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.line {
+  display: flex;
+  height: 22px;
+  line-height: 22px;
+  white-space: pre;
+  animation: rise 0.35s ease calc(10.5s + var(--i) * 35ms) both;
+}
+
+.number {
+  width: 48px;
+  flex: none;
+  padding-right: 14px;
+  color: var(--fg-faint);
+  text-align: right;
+}
+
+.text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.failing {
+  background: color-mix(in srgb, var(--error) 12%, transparent);
+  box-shadow: inset 2px 0 0 var(--error);
+  animation:
+    rise 0.35s ease calc(10.5s + var(--i) * 35ms) both,
+    mark 0.5s ease 11.3s both;
+}
+
+.failing .number {
+  color: var(--error);
+}
+
+.zone {
+  display: grid;
+  grid-template-rows: 1fr;
+  animation: unfold 0.4s ease var(--answer-at) both;
+}
+
+.zone-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: 560px;
+  max-width: calc(100% - 60px);
+  margin: 6px 12px 8px 48px;
+  padding: 10px 14px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--control);
+  box-shadow: 0 10px 26px -10px rgb(0 0 0 / 0.3);
+  font-family: var(--app-sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.answer-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.state {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ok) 14%, transparent);
+  color: var(--ok);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.state i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.place {
+  color: var(--fg-faint);
+  font-size: 11.5px;
+}
+
+.entry {
+  display: flex;
+  gap: 9px;
+}
+
+.entry.claude {
+  animation: rise 0.45s ease calc(var(--answer-at) + 0.5s) both;
+}
+
+.avatar {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--app-accent) 18%, transparent);
+  color: var(--app-accent);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.avatar.you {
+  background: #5b4a7a;
+  color: #fff;
+}
+
+.message {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.author {
+  color: var(--fg-dim);
+  font-size: 11.5px;
+}
+
+code {
+  color: var(--link);
+  font-family: var(--app-mono);
+  font-size: 11.5px;
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes mark {
+  from {
+    background: transparent;
+    box-shadow: inset 2px 0 0 transparent;
+  }
+}
+
+@keyframes unfold {
+  from {
+    grid-template-rows: 0fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    display: none;
+  }
+}
+
+@container (max-width: 760px) {
+  .opened-by {
+    display: none;
+  }
+}
+
+@container (max-width: 520px) {
+  .number {
+    width: 34px;
+    padding-right: 10px;
+  }
+
+  .answer {
+    max-width: calc(100% - 20px);
+    margin-left: 10px;
+  }
+
+  // the class head goes, so the answer fits under the failing line
+  .line:nth-child(-n + 3) {
+    display: none;
+  }
+}

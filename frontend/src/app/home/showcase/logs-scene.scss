@@ -1,5 +1,9 @@
 @use 'scene';
 
+:host {
+  position: relative;
+}
+
 .ranges {
   flex: none;
   display: flex;
@@ -64,7 +68,7 @@
 }
 
 .bars {
-  height: 56px;
+  height: 44px;
   display: flex;
   align-items: flex-end;
   gap: 3px;
@@ -184,6 +188,22 @@
   color: var(--fg-dim);
 }
 
+.fields .picked {
+  background: color-mix(in srgb, var(--app-accent) 13%, transparent);
+  box-shadow: inset 2px 0 0 var(--app-accent);
+  animation: pick 0.35s ease calc(5s + var(--i, 0) * 0.15s) both;
+}
+
+.fields .picked:last-child {
+  --i: 1;
+}
+
+.comment-anchor {
+  position: relative;
+  height: 0;
+  margin-top: -4px;
+}
+
 .lookup {
   color: var(--module-http);
   font-weight: 400;
@@ -194,7 +214,7 @@
   min-width: 0;
 }
 
-.trace span {
+.trace > span {
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -206,11 +226,30 @@
   color: var(--fg-muted);
 }
 
+.error-type {
+  color: var(--error);
+  font-weight: 600;
+}
+
+.frame-file {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--link) 45%, transparent);
+  text-underline-offset: 2px;
+}
+
 @keyframes press {
   40% {
     background: var(--pressed);
     color: var(--fg);
     border-color: var(--app-accent);
+  }
+}
+
+@keyframes pick {
+  from {
+    background: transparent;
+    box-shadow: inset 2px 0 0 transparent;
   }
 }
 
@@ -240,7 +279,9 @@
   }
 
   .tenant,
-  .update {
+  .update,
+  .views,
+  .ticks {
     display: none;
   }
 
