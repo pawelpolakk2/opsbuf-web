@@ -4,6 +4,114 @@
   position: relative;
 }
 
+.search-bar {
+  position: relative;
+}
+
+// shrinks to the input and keeps its end in sight, like a field that scrolls with the caret
+.query {
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  color: var(--fg);
+  font-size: 12px;
+  white-space: pre;
+}
+
+.query .typed {
+  flex: none;
+  white-space: pre;
+}
+
+// what a picked suggestion writes arrives in one step
+.completed {
+  flex: none;
+  width: calc(var(--chars) * 1ch);
+  overflow: hidden;
+  animation: complete 80ms ease-out var(--picked-at) both;
+}
+
+.suggest {
+  position: absolute;
+  top: 37px;
+  left: clamp(10px, calc(43px + var(--column) * 1ch), calc(100% - 410px));
+  z-index: 4;
+  width: 400px;
+  max-width: calc(100% - 20px);
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--control);
+  box-shadow: 0 12px 28px -8px rgb(0 0 0 / 0.35);
+  font-size: 12px;
+  opacity: 0;
+  animation: suggest var(--shown-for) linear var(--shown-at);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.option i {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border: 1.5px solid var(--tok-string);
+  border-radius: 50%;
+}
+
+.option .name {
+  flex: none;
+}
+
+.option .detail {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--fg-faint);
+  font-size: 11px;
+  text-align: right;
+}
+
+// the focus steps down the options to the one that is picked
+.option.stepped {
+  animation: focus var(--focus-for) step-end var(--focus-at);
+}
+
+// what the search showed before Update gives way to what it found
+.totals,
+.bars-box,
+.results {
+  display: grid;
+}
+
+.totals {
+  justify-items: end;
+}
+
+.totals > *,
+.bars-box > *,
+.results > * {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+.before {
+  animation: leave 0.25s ease var(--update-at) forwards;
+}
+
+.total.found {
+  animation: fade 0.3s ease var(--update-at) both;
+}
+
 .ranges {
   flex: none;
   display: flex;
@@ -25,7 +133,7 @@
 }
 
 .update {
-  animation: press 0.5s ease 1.5s both;
+  animation: press 0.5s ease var(--update-at) both;
 }
 
 .live {
@@ -83,7 +191,10 @@
   background: var(--bar-idle);
   overflow: hidden;
   transform-origin: bottom;
-  animation: grow-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) calc(1.5s + var(--i) * 22ms) both;
+}
+
+.found .bar {
+  animation: grow-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--update-at) + var(--i) * 22ms) both;
 }
 
 .bar i {
@@ -112,7 +223,10 @@
   min-height: 27px;
   border-bottom: 1px solid var(--border-soft);
   white-space: nowrap;
-  animation: rise 0.4s ease calc(2.3s + var(--i) * 90ms) both;
+}
+
+.found .row {
+  animation: rise 0.4s ease calc(var(--update-at) + 0.6s + var(--i) * 90ms) both;
 }
 
 .row > span {
@@ -127,7 +241,6 @@
   border-bottom-color: var(--border);
   color: var(--fg-muted);
   font-weight: 600;
-  animation: none;
 }
 
 .row.expanded {
@@ -142,7 +255,16 @@
 }
 
 .level {
+  color: var(--fg-muted);
+}
+
+.level.error {
   color: var(--error);
+  font-weight: 600;
+}
+
+.level.warn {
+  color: var(--warn);
   font-weight: 600;
 }
 
@@ -171,7 +293,7 @@
   border-radius: 6px;
   background: var(--rail);
   overflow: hidden;
-  animation: rise 0.45s ease 3.3s both;
+  animation: rise 0.45s ease calc(var(--update-at) + 1.4s) both;
 }
 
 .fields div {
@@ -191,7 +313,7 @@
 .fields .picked {
   background: color-mix(in srgb, var(--app-accent) 13%, transparent);
   box-shadow: inset 2px 0 0 var(--app-accent);
-  animation: pick 0.35s ease calc(5s + var(--i, 0) * 0.15s) both;
+  animation: pick 0.35s ease calc(var(--update-at) + 2.8s + var(--i, 0) * 0.15s) both;
 }
 
 .fields .picked:last-child {
@@ -207,7 +329,7 @@
 .lookup {
   color: var(--module-http);
   font-weight: 400;
-  animation: flash 1.2s ease 4.2s both;
+  animation: flash 1.2s ease calc(var(--update-at) + 2.1s) both;
 }
 
 .trace {
@@ -243,6 +365,46 @@
     background: var(--pressed);
     color: var(--fg);
     border-color: var(--app-accent);
+  }
+}
+
+@keyframes complete {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes suggest {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  12%,
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes focus {
+  from,
+  to {
+    background: color-mix(in srgb, var(--app-accent) 16%, transparent);
+  }
+}
+
+@keyframes leave {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suggest,
+  .before {
+    display: none;
   }
 }
 

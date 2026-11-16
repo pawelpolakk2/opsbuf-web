@@ -1,12 +1,12 @@
 @use 'scene';
 
 :host {
-  --answer-at: 11.9s;
+  --answer-at: calc(var(--update-at) + 8.8s);
   position: absolute;
   inset: 0;
   z-index: 3;
   background: var(--app-bg);
-  animation: open 0.4s ease 10.4s both;
+  animation: open 0.4s ease calc(var(--update-at) + 7.5s) both;
 }
 
 .file-bar {
@@ -69,7 +69,7 @@
   height: 22px;
   line-height: 22px;
   white-space: pre;
-  animation: rise 0.35s ease calc(10.5s + var(--i) * 35ms) both;
+  animation: rise 0.35s ease calc(var(--update-at) + 7.6s + var(--i) * 35ms) both;
 }
 
 .number {
@@ -90,8 +90,8 @@
   background: color-mix(in srgb, var(--error) 12%, transparent);
   box-shadow: inset 2px 0 0 var(--error);
   animation:
-    rise 0.35s ease calc(10.5s + var(--i) * 35ms) both,
-    mark 0.5s ease 11.3s both;
+    rise 0.35s ease calc(var(--update-at) + 7.6s + var(--i) * 35ms) both,
+    mark 0.5s ease calc(var(--update-at) + 8.3s) both;
 }
 
 .failing .number {

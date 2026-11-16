@@ -81,7 +81,7 @@ export const SCENES: Scene[] = [
     action: 'Update query',
     modes: VIEW_MODES,
     activeMode: 'View',
-    seconds: 17,
+    seconds: 19,
   },
   {
     id: 'k8s',

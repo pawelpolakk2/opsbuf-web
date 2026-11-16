@@ -1,8 +1,8 @@
 @use 'scene';
 
 :host {
-  --type-at: 5.9s;
-  --sent-at: 8.3s;
+  --type-at: calc(var(--update-at) + 3.6s);
+  --sent-at: calc(var(--update-at) + 5.7s);
   position: absolute;
   top: 0;
   left: 30px;
@@ -17,7 +17,7 @@
   background: var(--control);
   box-shadow: 0 12px 30px -8px rgb(0 0 0 / 0.35);
   font-family: var(--app-sans);
-  animation: pop 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) 5.4s both;
+  animation: pop 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--update-at) + 3.2s) both;
 }
 
 .quote {
@@ -87,8 +87,8 @@
 // the last letter typed carries the caret
 .question span {
   animation:
-    appear 1ms step-end calc(var(--type-at) + var(--i) * 45ms) both,
-    caret 45ms step-end calc(var(--type-at) + var(--i) * 45ms);
+    appear 30ms linear calc(var(--type-at) + var(--i) * 40ms) both,
+    caret 40ms step-end calc(var(--type-at) + var(--i) * 40ms);
 }
 
 .send {
@@ -101,7 +101,7 @@
   border-radius: 8px;
   background: color-mix(in srgb, var(--app-accent) 16%, transparent);
   color: var(--app-accent);
-  animation: send 0.4s ease 8s both;
+  animation: send 0.4s ease calc(var(--update-at) + 5.45s) both;
 }
 
 .steps {
@@ -125,7 +125,7 @@
   gap: 7px;
   color: var(--fg-muted);
   white-space: nowrap;
-  animation: rise 0.35s ease calc(8.6s + var(--i) * 0.7s) both;
+  animation: rise 0.35s ease calc(var(--update-at) + 6s + var(--i) * 0.6s) both;
 }
 
 .step:first-child {
